@@ -1,4 +1,4 @@
-﻿<?php
+<?php 
 /**
  * Classe para calcular a data limite de envio considerando apenas os dias de semana (segunda a sexta)
  * Precisa ser passado uma data unix
