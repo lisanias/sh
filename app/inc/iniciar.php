@@ -22,7 +22,7 @@ include_once('./class/Quem.class.php');
 include_once('./inc/funcoes.php');
 
 //faço a conexão com o banco (hosr, user, password, dbase)
-$con = mysqli_connect('localhost', 'sagra213_hosana', 'lucas#3$1', 'sagra213_hosana_back');
+$con = mysqli_connect('localhost', 'sagra213_hosana', 'lucas#3$1', 'sagra213_hosana');
 	// verificar a conexão
 	if (mysqli_connect_error($con))
 	  {
