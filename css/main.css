@@ -1,0 +1,29 @@
+dt {font-size:0.7em;}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+.icon24 {
+	display:inline-block; 
+	width:24px; height:24px; 
+	background-position: 0 0;
+	background-repeat:no-repeat; 
+	padding-right: 5px;
+}
+
+td.tdd {
+	text-align:right;
+	font-size:x-small;
+}
+
+.contorno-fundo{
+	padding:20px;
+	margin-bottom:30px;
+	color:inherit;
+	background-color:#eee;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+	border-radius:6px
+	}
