@@ -1,0 +1,7 @@
+09.01.2014
+    Acrescentou listagem por aluno com detalhamento de pagamentos (print_pdf.pagamentos.agrupado.por.aluno.php)
+    Adicionou link ao menu para essa listagem.
+    Corrigiu a listagem por aluno (estava aparecendo duas vezes o nome - agora aparece o nome e o sobrenome)
+
+08.01.2014
+    Melhorou as mensagens enviadas ou exibidas na tela na hora da inscrição, enfatizando que precisa pagar e ENVIAR COMPROVANTE ate a data estipulada.
