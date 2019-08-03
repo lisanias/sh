@@ -24,7 +24,7 @@ include 'i_secao.evento.default.php';
         <link rel="stylesheet" href="css/main.css">
 
         <style>
-            body { padding-top: 60px; padding-bottom: 40px; }
+            body { padding-top: 0; padding-bottom: 40px; }
         </style>
         
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
@@ -89,7 +89,10 @@ include 'i_secao.evento.default.php';
                             <div class="alert alert-info">
                                 <div style="text-align:center;">
                                 	<h3 class="text-info">Data do Próximo Modulo:</br>
-                                    24 a 28 de Julho de 2019</h3>
+                                    <?= date('d', strtotime($dados['data_ini']) ) ?> 
+                                    a <?= date('d', strtotime($dados['data_fim']) ) ?> 
+                                    de <?= nomeDoMes(date('m', strtotime($dados['data_ini']) ) ) ?> 
+                                    de <?= date('Y', strtotime($dados['data_fim']) ) ?></h3>
                                 </div>
                             </div>
                         </div>
