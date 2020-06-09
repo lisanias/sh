@@ -32,7 +32,8 @@ if (isset($_POST['procurar_aluno'])) {
         "Ì","Í","Î",
         "Ò","Ó","Ô","Õ","Ö",
         "Ù","Ú","Û","Ü",
-        "ç","Ç","ñ","Ñ");
+        "ç","Ç","ñ","Ñ",
+        "s","z");
     $procurar =  str_replace($substituir,"_", $procurar);
     $procurar = str_replace(" ","%",$procurar);
 

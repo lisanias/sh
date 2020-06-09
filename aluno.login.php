@@ -88,7 +88,7 @@ include 'i_secao.evento.default.php';
                             </div>
                             <div class="alert alert-info">
                                 <div style="text-align:center;">
-                                	<h3 class="text-info">Data do Próximo Modulo:</br>
+                                	<h3 class="text-info">Data do Próximo Módulo:</br>
                                     <?= date('d', strtotime($dados['data_ini']) ) ?> 
                                     a <?= date('d', strtotime($dados['data_fim']) ) ?> 
                                     de <?= nomeDoMes(date('m', strtotime($dados['data_ini']) ) ) ?> 
@@ -133,7 +133,7 @@ include 'i_secao.evento.default.php';
                 <div class="span4">
                     <address>
                         <i class="icon-question-sign"></i><strong> Suporte Técnico</strong><br>
-                        <abbr title="Telefone Celular">Tel:</abbr> (43) 9152-2015 <br />
+                        <abbr title="Telefone Celular">Tel:</abbr> (43) 99152-2015 <br />
                         <a href="mailto:pastorlisanias@gmail.com">pastorlisanias@gmail.com</a>
                     </address>
                 </div>
@@ -142,7 +142,9 @@ include 'i_secao.evento.default.php';
             <hr>
 
             <footer>
-                <p><img src="img/favicon.png" alt="WebiGSiS" width="24" height="24"> &copy; WebiGSiS 2013 </p>
+                <p><img src="img/favicon.png" alt="WebiGSiS" width="24" height="24"> 
+                    &copy; WebiGSiS 2013 - 2019 | <?= exec('git log --pretty="%h" -n1 HEAD') ?>
+                </p>
             </footer>
             
         </div>
