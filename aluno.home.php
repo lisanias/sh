@@ -189,7 +189,9 @@ $dados = mysqli_fetch_array($consulta);
 if ($dados) {
 	$curso_nome = $dados['nome_curso'];
 	$curso_abrev = $dados['abreviatura'];
-	$valor_final = $dados['valor'] - $dados['desconto'];
+    $valor = $dados['valor'];
+    $aVista = $dados['aVista'];
+    $desconto = $dados['desconto'];
 	
 	// opção de texto alternativo para diferentes status
 	$status_alt_texto = '';
@@ -211,16 +213,23 @@ if ($dados) {
 	echo 	"<tr><td class='tdd'>CURSO:</td><td>" . $dados['nome_curso'] . " (" . $dados['abreviatura'] . ")</td></tr>";
 	echo	"<tr><td class='tdd'>MÓDULO:</td><td>" . $dados['modulo'] . "</td></tr>";
 	echo	"<tr><td class='tdd'>HOSPEDAGEM:</td><td>" . ($dados['hospedagem']==1?'Sim':'Não') . "</td></tr>";
-	echo 	"<tr><td class='tdd'>VALOR:</td><td>" . number_format($valor_final,2,",",".");
+	echo 	"<tr><td class='tdd'>VALOR:</td><td>";
+	echo 	"<tr><td class='tdd'>A prazo:</td><td>" . number_format($valor,2,",",".") . "</td></tr>";
+	echo 	"<tr><td class='tdd'>A vista:</td><td>" . number_format($aVista,2,",",".") . "</td></tr>";
 	if ($dados['desconto']>0){
-		echo "<br><span style='font-size:9px;'>(Valor do curso - " . number_format($dados['valor'],2,",",".") . " menos o desconto de " . number_format($dados['desconto'],2,",",".") . ")</span></td></tr>";
-	}
+		echo "<br><span style='font-size:9px;'>Outros descontos concedidos: " . number_format($desconto,2,",",".") . "</span></td></tr>";
+    }
+    
+    /*
 	echo 	"<tr><td class='tdd'>SITUAÇÃO:</td><td>";
-    echo statusf ($dados['status']) . "<br><em>". $status_alt_texto;
+    echo statusf ($dados['status']) . "<br><em>". $status_alt_texto;    
     echo "</em></td></tr>  ";
+    */
 	echo "</table>";
+    
+    echo "<div><a href='aluno/public/checkout.php?vl=v' class='btn btn-small btn-success btn-block'>Pagar com Cartão</a></div>";
 
-    if ($dados['status'] >= 3) {
+    if ($dados['status'] >= 3 and $dados['id_curso']==8) {
         
         echo "<div class='uk-card uk-card-default uk-card-body'>";
         echo "<p>Click no link abaixo para proseguir</p>";
@@ -235,6 +244,7 @@ if ($dados) {
 		$modulo_financas = "on";
 	}
 	$inscricao_valor = number_format($dados['valor_inscricao_previa'],2,",",".") ;
+	$valor_final = number_format($dados['valor'],2,",",".") ;
 	$id_matricula = (int)$dados['id_matricula'];
 	$prazo_pag = $dados['data_comprovante'];
 	$matricula_status = $dados['status'];
@@ -435,29 +445,19 @@ if ($linhas = mysqli_num_rows($consulta)) {
 				}
 				echo "</tbody></table>";
 				// formatar numeros
-				$valor_final_format = number_format($valor_final,2,",",".");
 				$total_pago_format = number_format($total_pago,2,",",".");
 				echo "
 					<table width='200px'>
 						<tr>
 							<td>Valor do curso</td>
-							<td style='text-align:right;'>{$valor_final_format}</td>
+							<td style='text-align:right;'>{$valor_final}</td>
 						</tr>
 						<tr>
 							<td>TOTAL PAGO</td>
 							<td style='text-align:right;'>{$total_pago_format}</td>
 						</tr>
 					";
-				$deve = $valor_final - $total_pago;
-				if ($deve > 0){
-					$deve_format = number_format($deve,2,",",".");
-					echo "
-						<tr>
-							<td>Falta pagar</td>
-							<td style='text-align:right;'>{$deve_format}</td>
-						</tr>
-						";
-				}
+				
 				echo "</table>";
 		}
 		else {
