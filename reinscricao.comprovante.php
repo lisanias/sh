@@ -15,6 +15,21 @@ include("./app/lang/pt-br.php");
 
 $matricula_id = base64_decode($_GET['id']);
 
+$sql = "SELECT * FROM  matricula WHERE id_matricula = ". $matricula_id ;
+    if(!$result = $con->query($sql)){
+        die('Há um erro ao executar a pesquisa na base de dados [' . $con->error . ']');}
+$dados = mysqli_fetch_array($result);
+
+$sql = "SELECT * FROM  modulo 
+        INNER JOIN 
+        cursos ON modulo.id_curso = cursos.id_curso
+        WHERE id_modulo = ". $dados['id_modulo'] ;
+
+    if(!$result = $con->query($sql)){
+        die('Há um erro ao executar a pesquisa na base de dados [' . $con->error . ']');}
+$curso = mysqli_fetch_array($result);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -33,7 +48,6 @@ $matricula_id = base64_decode($_GET['id']);
         
         <style>
             body {
-                padding-top: 60px;
                 padding-bottom: 40px;
             }
         </style>        
@@ -59,28 +73,10 @@ $matricula_id = base64_decode($_GET['id']);
 		</style>
 	</head>
      <body onload="vermsg('<?=$msg?>')">
-        <!--[if lt IE 7]>
-            <p class="chromeframe">Você está usando um <strong>navegador desatualizado</strong>. Por vavor <a href="http://browsehappy.com/">atualize seu navegador</a> ou <a href="http://www.google.com/chromeframe/?redirect=true">instale o Google Chrome</a> para uma utilização mais eficiente do sistema.</p>
-        <![endif]-->
+        
 
-        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
-
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <?= LOGO ?>
-                    <div class="nav-collapse collapse">
-                        <?php include 'm_top.alunos.php'; ?>
-                    </div><!--/.nav-collapse -->
-                </div>
-            </div>
-        </div>
-        <div class="container">            
+        <div class="container">     
+            <?php include 'm_top.alunos.php'; ?>       
             <div class="row">
                 <div class="row-fluid" style="background-image:url(img/h48.png); background-position: left center; background-repeat:no-repeat;">
                 	<div class="span8" style="height:48px;">
@@ -97,20 +93,18 @@ $matricula_id = base64_decode($_GET['id']);
                 <!-- Conteúdo da página a partir daqui -->
                 	
                     <?php
-						// verficar vagas
-						$sql = "SELECT * FROM  matricula WHERE id_matricula = ". $matricula_id ;
-						if(!$result = $con->query($sql)){
-							die('Há um erro ao executar a pesquisa na base de dados [' . $con->error . ']');
-						}
-						while ($dados = mysqli_fetch_array($result)) {
+                        // verficar vagas
+                        
+						
 							if($dados['id_aluno'] <> $_SESSION['id_aluno']){
-								echo "HÁ UM ERRO COM A INSCRIÇÃO E O ALUNO! Contacte a secretaria do SH";
+								echo "Estamos com problemas no sistema, verifique na área do aluno aluno se realmente foi feita a sua inscrição ou contacte a secretaria do SH";
 							}
 							$data_vencimento = implode('/',array_reverse(explode('-',trim($dados['data_comprovante']))));
 							if($dados['status']==1){
 								$titulo = "<div class='alert alert-error' style='text-align:center;'>Inscrição em lista de espera!</div>";
 								$mainmsg = "<br /><h4>{$_SESSION['nome']} {$_SESSION['sobrenome']},</h4>
-									<p>Obrigado por fazer a sua pré inscrição.<br /></p>
+                                    <p>Obrigado por fazer a sua pré inscrição.<br /></p>
+                                    <p>Curso: {$curso['nome_curso']}</p>
 									<p>Infelizmente, no momento, não há vagas disponiveis para o próximo modúlo e sua inscrição está em uma lista despera.<br />
 									Qualquer dúvida, entre em contato com a secretaria do Hosana por telefone ou e-mail e verifique a situação das vagas.</p>
 									
@@ -124,17 +118,15 @@ $matricula_id = base64_decode($_GET['id']);
 								$titulo = "<div class='alert alert-success' style='text-align:center;'>Inscrição realizada com sucesso!</div>";
 								$mainmsg = "
 									<h4>{$_SESSION['nome']} {$_SESSION['sobrenome']},</h4>
-									<p>Sua inscrição foi realizada com sucesso. Tendo alguma duvida, poderá entrar em contato com a secretaria do SH. Você tem até o dia {$data_vencimento} para fazer o depósito que confirmará sua isncrição. Se o depósito não for realizado até essa data a sua incrição será cancelada.</p>
-									<br />
-									<h4>Conta para depósito de inscrição prévia e parcelas:</h4>
-									<p><span style='color:red; font-weight:bold'>BANCO BRADESCO</span><br />
-									Agência: <strong>0053-1</strong> C/C: <strong>121513-2</strong></p>
-									<br />
-									<div class='alert alert-info'>Ressaltamos que para a confirmação da inscrição, será necessário o pagamento e o envio do comprovante até o dia {$data_vencimento}. Caso contrário a sua inscrição será cancelada.<br />
-									Ocorrendo o cancelamento, se desejar fazer nova inscrição deverá verificar no site ou na secretaria do Hosana a disponibilidade de vagas.</div>
-									<p><br />ATT.<br /> Equipe do Hosana</p>";
+                                    <p>Sua inscrição foi realizada com sucesso. Tendo alguma duvida, poderá entrar em contato com a secretaria do SH. Após o pagamento a sua inscrição será efetivada</p>
+                                    <p>Curso: <strong>{$curso['nome_curso']}</strong><br>
+                                    Curso: <strong>{$_SESSION['evento_atual_nome']}</strong><br>
+                                    Valor Parcelado: <strong>{$curso['valor']}</strong><br>
+                                    Valor a Vista: <strong>{$curso['aVista']}</strong><br>
+                                    </p>
+									";
 							}								
-						}
+						
 						
 						
 					?>
@@ -152,7 +144,7 @@ $matricula_id = base64_decode($_GET['id']);
 
 						<?=$mainmsg?>
                         
-                        <br /><a href="./aluno.home.php" class="btn btn-primary btn-large" >Continuar</a>
+                        <br /><a href="./aluno.home.php" class="btn btn-primary btn-large" >Inicio</a><a href='aluno/public/checkout.php' class='btn  btn-large btn-success'>Pagar com Cartão</a>
                     
                     </div><!-- /widget-content -->
 

@@ -7,11 +7,7 @@
 
 include 'i_secao.evento.default.php';
 
-if (!isset($_SESSION['inscricao_situacao_cod'])){
-	$_SESSION['msg'] = "Preencha os campos com seus dados. <br>(Err. inscricao.confirm.001)";
-	echo header('Location: inscricao.php');
-    die();
-}
+
 
 // Pegar variáveis passadas da página anterior
 $input_nome = $_SESSION['input_nome'];

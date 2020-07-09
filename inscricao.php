@@ -315,6 +315,7 @@ if(isset($_SESSION['focus'])){
                                 
                                 <div class="control-group hide">
                                     <label class="control-label" for="inputHospedagem">Hospedagem </label>
+                                    <input type="hidden" name="inputHospedagem" value='1'>
                                     <div class="controls">
                                       <select id="inputHospedagem" name="inputHospedagem" />
                                       	<?= $vagas_hospedagem_lista1 ?>

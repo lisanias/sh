@@ -207,7 +207,7 @@ if ($dados) {
     */
 	echo "</table>";
     
-    echo "<div><a href='aluno/public/checkout.php?vl=v' class='btn btn-small btn-success btn-block'>Pagar com Cartão</a></div>";
+    echo "<div><a href='aluno/public/checkout.php' class='btn btn-small btn-success btn-block'>Pagar com Cartão</a></div>";
 
     if ($dados['status'] >= 3 and $dados['id_curso']==8) {
         

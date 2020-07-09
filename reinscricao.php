@@ -158,6 +158,9 @@ include("./app/lang/pt-br.php");
 										$tabela = mysqli_query($con,$sql);
 										
 										while ($dados = mysqli_fetch_array($tabela)) {
+                                            if($dados['id_curso']>4){
+                                                continue;
+                                            }
                                             #$disabled = ($dados['id_curso'] == 7 ? 'disabled': ''); #desabilita algum curso pelo id...
 											echo "<option value={$dados['id_curso']} {$disabled} >{$dados['nome_curso']}</option>";
 										}
@@ -166,7 +169,7 @@ include("./app/lang/pt-br.php");
 								</div>
 							</div>
 							
-                            <div class="control-group">
+                            <div class="control-group hide">
                                 <label class="control-label" for="hospedagem">Hospedagem:</label>
                                 <div class="controls">
                                     <select name="hospedagem" id="hospedagem">
@@ -177,7 +180,7 @@ include("./app/lang/pt-br.php");
                                 </div> <!-- /controls -->
                             </div> <!-- /control-group -->                            
 							
-                            <div class="control-group">
+                            <div class="control-group hide">
                                 <label class="control-label" for="complemento"><?= $TEXT['obs'] ?></label>
                                 <div class="controls">
                                     <textarea name='obs' id='obs'></textarea><br>
