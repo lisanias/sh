@@ -110,7 +110,7 @@
 
 @media (min-width: 1200px) {
   .row {
-    margin-left: -30px;
+    /*margin-left: -30px;*/
     *zoom: 1;
   }
   .row:before,
@@ -448,7 +448,7 @@
     width: 56px;
   }
   .thumbnails {
-    margin-left: -30px;
+  /*  margin-left: -30px;*/
   }
   .thumbnails > li {
     margin-left: 30px;
@@ -460,7 +460,7 @@
 
 @media (min-width: 768px) and (max-width: 979px) {
   .row {
-    margin-left: -20px;
+    /*margin-left: -20px;*/
     *zoom: 1;
   }
   .row:before,
@@ -807,8 +807,8 @@
   .navbar-fixed-top,
   .navbar-fixed-bottom,
   .navbar-static-top {
-    margin-right: -20px;
-    margin-left: -20px;
+  /*  margin-right: -20px;
+    margin-left: -20px;*/
   }
   .container-fluid {
     padding: 0;

@@ -89,16 +89,13 @@ if (isset($_SESSION["msg"])) {
         <title></title>
         <meta name="description" content="Área do aluno, onde acompanha os modulos feitos, pagamentos, etc...">
         <meta name="viewport" content="width=device-width">
-        <!--[if IE]><link rel="shortcut icon" href="img/favicon.ico"><![endif]-->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="icon" href="img/favicon.png">
         
         
         <style>
             body {
-                padding-top: 60px;
                 padding-bottom: 40px;
             }
         </style>        
@@ -116,36 +113,20 @@ if (isset($_SESSION["msg"])) {
             };
 
         </script>
-<script type="text/javascript" src="js/jquery/jquery-1.3.2.js"></script>
+        <script type="text/javascript" src="js/jquery/jquery-1.3.2.js"></script>
 
         <style type="text/css">
 			dl.dl-horizontal dt {width:100px;}
 			dl.dl-horizontal dd { padding-left: 0}
 		</style>
-	</head>
-     <body onload="vermsg('<?=$msg?>')">
-        <!--[if lt IE 7]>
-            <p class="chromeframe">Você está usando um <strong>navegador desatualizado</strong>. Por vavor <a href="http://browsehappy.com/">atualize seu navegador</a> ou <a href="http://www.google.com/chromeframe/?redirect=true">instale o Google Chrome</a> para uma utilização mais eficiente do sistema.</p>
-        <![endif]-->
+    </head>
+    
+    <body onload="vermsg('<?=$msg?>')">        
 
-        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
-
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <?= LOGO ?>
-                    <div class="nav-collapse collapse">
-                        <?php include 'm_top.alunos.php'; ?>
-                    </div><!--/.nav-collapse -->
-                </div>
-            </div>
-        </div>
-        <div class="container">            
+        <div class="container">  
+            
+            <?php include 'm_top.alunos.php'; ?>
+            
             <div class="row">
                 <div class="row-fluid" style="background-image:url(img/h48.png); background-position: left center; background-repeat:no-repeat;">
                 	<div class="span8" style="height:48px;">

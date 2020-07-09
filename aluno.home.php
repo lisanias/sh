@@ -21,8 +21,7 @@ include("i_funcoes.php");
         <meta name="description" content="Área do aluno, onde acompanha os modulos feitos, pagamentos, etc...">
         <meta name="viewport" content="width=device-width">
         <!--[if IE]><link rel="shortcut icon" href="img/favicon.ico"><![endif]-->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="icon" href="img/favicon.png">
 
@@ -58,9 +57,10 @@ include("i_funcoes.php");
 	</head>
      <body onload="vermsg('<?=$msg?>')">
         
-        <?php include 'm_top.alunos.php'; ?>
+        <div class="container">
 
-        <div class="container">            
+        <?php include 'm_top.alunos.php'; ?>
+            
             <div class="row">
                 <div class="row-fluid" style="background-image:url(img/h48.png); background-position: left center; background-repeat:no-repeat;">
                 	<div class="span8" style="height:48px;">
@@ -307,6 +307,7 @@ if ($linhas = mysqli_num_rows($consulta)) {
 	
                         </div>
                     </div>
+
                     <div class="span4"><!-- SESSÃO ENVIAR PAGAMENTOS - Ativo apenas para o próximo modulo (modulo ativo como padrão) -->
                     	<div class="control-group">
                             <legend>
@@ -373,7 +374,8 @@ if ($linhas = mysqli_num_rows($consulta)) {
                             
                          </div>
                     </div>
-            	</div>
+                </div>
+                
                 <div class="row-fluid" style="padding-top: 25px;">
                 	<div class="span12">
                     	<div class="control-group">

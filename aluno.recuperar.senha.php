@@ -32,8 +32,7 @@ include 'i_secao.evento.default.php';
         <!--[if IE]><link rel="shortcut icon" href="img/favicon.ico"><![endif]-->
 	
         <link rel="icon" href="img/favicon.png">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
 
         <style>
@@ -57,65 +56,62 @@ include 'i_secao.evento.default.php';
     </head>
 
     <body onload="vermsg('<?=$msg?>')">
-        
-        <?php include 'm_top.alunos.php'; ?>
+        <div class="container">
+            <?php include 'm_top.alunos.php'; ?>
 
-        <?php if (isset($msg)) { ?>
-
-        <div class="row">
-            <div class="container">
-                <div class="alert <?=$msg_tipo?> fade in" align="center" >
-                    <a class="close" data-dismiss="alert">×</a>
-                    <?=$msg?>
-                    </div>
-            </div>
-        </div>
-        <?php } ?>
+            <?php if (isset($msg)) { ?>
 
             <div class="row">
-                    <div class="row-fluid" style="background-image:url(img/h48.png); background-position: left center; background-repeat:no-repeat;">
-                            <h3 style="padding-left:55px">Recuperar Senha</h3>
-                    </div>
-                    <div class="row-fluid">
-
-                        
-
-
-                        <div class="span12">
-                            <div class="hero-unit">
-                                <div class="well well-small">Por favor, digite no campo abaixo o seu e-mail e enviaremos instruçoes para recuperar a sua senha.</div>
-                                
-                                <form id='login' action='aluno.recuperar.senha.acao.php' method='post' accept-charset='UTF-8'>
-                                    <fieldset >
-                                        <input type='hidden' name='submitted' id='submitted' value='1'/>
-
-                                        <label for='email' >E-mail</label>
-                                        <input type='text' name='email' id='email'  maxlength="250" required />
-
-                                        <br><input type='submit' name='Submit' value='Recuperar' />
-                                    </fieldset>
-                                </form>
-                            </div>
+                <div class="container">
+                    <div class="alert <?=$msg_tipo?> fade in" align="center" >
+                        <a class="close" data-dismiss="alert">×</a>
+                        <?=$msg?>
                         </div>
-                        
+                </div>
+            </div>
+            <?php } ?>
 
+            <div class="row">
+                <div class="row-fluid" style="background-image:url(img/h48.png); background-position: left center; background-repeat:no-repeat;">
+                        <h3 style="padding-left:55px">Recuperar Senha</h3>
+                </div>
+                <div class="row-fluid">
 
+                    <div class="span12">
+                        <div class="hero-unit">
+                            <div class="well well-small">Por favor, digite no campo abaixo o seu e-mail e enviaremos instruçoes para recuperar a sua senha.</div>
+                            
+                            <form id='login' action='aluno.recuperar.senha.acao.php' method='post' accept-charset='UTF-8'>
+                                <fieldset >
+                                    <input type='hidden' name='submitted' id='submitted' value='1'/>
+
+                                    <label for='email' >E-mail</label>
+                                    <input type='text' name='email' id='email'  maxlength="250" required />
+
+                                    <br><input type='submit' name='Submit' value='Recuperar' />
+                                </fieldset>
+                            </form>
+                        </div>
                     </div>
+                    
+
+
+                </div>
             </div>
             <!-- Linha com colunas para informações auxiliares  -->
             <div class="row">
                 <div class="span4">
                     <address>
-                      <i class="icon-home"></i><strong> Escritório Administrativo</strong><br>
-                      Rua Caraíbas, nº 424<br>
-                      Vila Casoni - 86026-560 - Londrina - PR<br>
+                        <i class="icon-home"></i><strong> Escritório Administrativo</strong><br>
+                        Rua Caraíbas, nº 424<br>
+                        Vila Casoni - 86026-560 - Londrina - PR<br>
                     </address>
                 </div>
                 <div class="span4">
                     <address>
-                      <i class="icon-info-sign"></i><strong> Contato</strong><br>
-                      <abbr title="Phone">Tel:</abbr> (43) 3325 1424<br>
-                      <a href="mailto:secretaria@seminariohosana.com.br">secretaria@seminariohosana.com.br</a><br>
+                        <i class="icon-info-sign"></i><strong> Contato</strong><br>
+                        <abbr title="Phone">Tel:</abbr> (43) 3325 1424<br>
+                        <a href="mailto:secretaria@seminariohosana.com.br">secretaria@seminariohosana.com.br</a><br>
                     </address>
                 </div>
                 <div class="span4">
@@ -132,7 +128,7 @@ include 'i_secao.evento.default.php';
             <footer>
                 <p><img src="img/favicon.png" alt="WebiGSiS" width="24" height="24"> &copy; WebiGSiS 2013 </p>
             </footer>
-            
+                
         </div>
         
         <!-- MODAL -->

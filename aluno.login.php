@@ -19,8 +19,7 @@ include 'i_secao.evento.default.php';
         <!--[if IE]><link rel="shortcut icon" href="img/favicon.ico"><![endif]-->
 	
         <link rel="icon" href="img/favicon.png">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
 
         <style>
@@ -43,10 +42,10 @@ include 'i_secao.evento.default.php';
 	</script>
     </head>
         <body onload="vermsg('<?=$msg?>')">
-        
-        <?php include 'm_top.alunos.php'; ?> 
                 
         <div class="container">
+        
+        <?php include 'm_top.alunos.php'; ?> 
             
             <div class="row">
                     <div class="row-fluid" style="background-image:url(img/h48.png); background-position: left center; background-repeat:no-repeat;">

@@ -1,6 +1,6 @@
 <?php
-//error_reporting(E_ALL);
-//ini_set('display_errors','On');
+error_reporting(E_ALL);
+ini_set('display_errors','On');
 
 include './i_secao.evento.default.php';
 
@@ -23,7 +23,7 @@ if(isset($_SESSION['focus'])){
         <!--[if IE]><link rel="shortcut icon" href="img/favicon.ico"><![endif]-->
 		<link rel="icon" href="./img/favicon.png">
 
-        <link rel="stylesheet" href="./css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/bootstrap.css">
         <style>
             body {
                 padding-top: 60px;
@@ -151,23 +151,9 @@ if(isset($_SESSION['focus'])){
     </head>
     <body>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <?= LOGO ?>
-                    <div class="nav-collapse collapse">
-                        <?php include 'm_top.alunos.php'; ?>
-                    </div><!--/.nav-collapse -->
-                </div>
-            </div>
-        </div>
-
  	<div class="container">
+
+        <?php include 'm_top.alunos.php'; ?>
 
             <!-- Seção pricipal do conteúdo - 3 colunas -->
             
@@ -187,12 +173,12 @@ if(isset($_SESSION['focus'])){
                     <!-- Coluna Formulario da esquerda -->
                     <div class="span3">
                     	
-                        <div class="hero-unit">
+                        <div class="hero-unit hide" >
                         	<legend><i class="icon24" style="background-image:url(img/icon_cama&24.png);"></i>Vagas...</legend>
                             <div style="font-size:.85em; line-height:120%">
                             
                             <?php 
-							
+							/*
 							include 'r_vagas_disponiveis.php'; 
 							if ($vagas > 25) {
 									echo "Estamos com vagas.";
@@ -209,7 +195,7 @@ if(isset($_SESSION['focus'])){
 							}
 							
 							
-							// definir qual está selecionado e se for reixibição exibir o mesmo selecionado anteriormente...
+							/ definir qual está selecionado e se for reixibição exibir o mesmo selecionado anteriormente...
 							$valor_opcao = (isset($_SESSION['input_hospedagem']))? $_SESSION['input_hospedagem'] : '';
 							
 							// opções para o campo hospedagem
@@ -239,7 +225,7 @@ if(isset($_SESSION['focus'])){
 								$vagas_hospedagem_lista2 = "<option value='0' {$selecionado2} >Não</option>";
 							}
 							
-							
+							*/
 							?>
                             </div>
 
@@ -247,7 +233,7 @@ if(isset($_SESSION['focus'])){
                             
                         </div>
 
-                        <div class=" ">
+                        <div class="hero-unit">
                             
                             <legend><i class="icon-info-sign" ></i> Informações</legend>
                             
@@ -308,6 +294,9 @@ if(isset($_SESSION['focus'])){
 												$tabela = mysqli_query($con_curso,$sql);								
 												$selecionado = '';
 												while ( $dados = mysqli_fetch_array($tabela) ) {
+                                                        if($dados['id_curso']>3){
+                                                            continue;
+                                                        }
 														if (isset($_SESSION['input_curso'])){
 															$selecionado = ($_SESSION['input_curso'] == $dados['id_curso'])?'selected':'';
 														}
@@ -324,7 +313,7 @@ if(isset($_SESSION['focus'])){
                                     </div>
                                 </div>
                                 
-                                <div class="control-group">
+                                <div class="control-group hide">
                                     <label class="control-label" for="inputHospedagem">Hospedagem </label>
                                     <div class="controls">
                                       <select id="inputHospedagem" name="inputHospedagem" />
