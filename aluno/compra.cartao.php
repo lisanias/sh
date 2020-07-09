@@ -1,7 +1,7 @@
 <?php
 
 require 'vendor/autoload.php';
-include_once dirname(__DIR__).'../i_secao.evento.default.php';
+include_once dirname(__DIR__).'/i_secao.evento.default.php';
 var_dump($evento);
 die();
 include_once 'config.ini.php';
