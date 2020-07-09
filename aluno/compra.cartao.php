@@ -1,4 +1,5 @@
 <?php
+ die('aqui!!!');
 require 'vendor/autoload.php';
 
 include_once dirname(__DIR__).'../i_secao.evento.default.php';
@@ -87,7 +88,7 @@ try {
     $status = $sale->getPayment()->getStatus();
     $returnMessage = $sale->getPayment()->getReturnMessage();
 
-    die($status);
+   
 
     if ($status !== 1) {
         $_SESSION["msg"] = "Pagamento não realizado. Mensagem da operadora do cartão: ". $returnMessage;
