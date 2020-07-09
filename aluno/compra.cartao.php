@@ -2,11 +2,11 @@
 
 require 'vendor/autoload.php';
 include_once dirname(__DIR__).'/i_secao.evento.default.php';
-var_dump($evento);
-die();
 include_once 'config.ini.php';
 include_once 'core/basedados.php';
 require 'core/valida.php';
+var_dump(token());
+die();
 
 use Cielo\API30\Merchant;
 

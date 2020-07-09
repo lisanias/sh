@@ -41,7 +41,7 @@ function token()
     // verfica o token
     if($_POST['token']===$token){
 
-        return true;
+        return $token;
         
     } else {
 
