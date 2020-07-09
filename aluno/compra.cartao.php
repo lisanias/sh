@@ -1,7 +1,8 @@
 <?php
- die('aqui!!!');
-require 'vendor/autoload.php';
 
+require 'vendor/autoload.php';
+echo dirname(__DIR__);
+die();
 include_once dirname(__DIR__).'../i_secao.evento.default.php';
 include_once 'config.ini.php';
 include_once 'core/basedados.php';
