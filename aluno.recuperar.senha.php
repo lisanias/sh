@@ -57,40 +57,20 @@ include 'i_secao.evento.default.php';
     </head>
 
     <body onload="vermsg('<?=$msg?>')">
-        <!--[if lt IE 7]>
-            <p class="chromeframe">Você está usando um <strong>navegador desatualizado</strong>. Por vavor <a href="http://browsehappy.com/">atualize seu navegador</a> ou <a href="http://www.google.com/chromeframe/?redirect=true">instale o Google Chrome</a> para uma utilização mais eficiente do sistema.</p>
-        <![endif]-->
+        
+        <?php include 'm_top.alunos.php'; ?>
 
-        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
+        <?php if (isset($msg)) { ?>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <?= LOGO ?>
-                    <div class="nav-collapse collapse">
-                        <?php include 'm_top.alunos.php'; ?>
-                    </div><!--/.nav-collapse -->
-                </div>
+        <div class="row">
+            <div class="container">
+                <div class="alert <?=$msg_tipo?> fade in" align="center" >
+                    <a class="close" data-dismiss="alert">×</a>
+                    <?=$msg?>
+                    </div>
             </div>
         </div>
-        <div class="container">
-
-            <?php if (isset($msg)) { ?>
-
-            <div class="row">
-                <div class="container">
-                    <div class="alert <?=$msg_tipo?> fade in" align="center" >
-                       <a class="close" data-dismiss="alert">×</a>
-                       <?=$msg?>
-                     </div>
-                </div>
-            </div>
-            <?php } ?>
+        <?php } ?>
 
             <div class="row">
                     <div class="row-fluid" style="background-image:url(img/h48.png); background-position: left center; background-repeat:no-repeat;">

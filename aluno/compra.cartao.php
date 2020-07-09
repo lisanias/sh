@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL) ;
 require 'vendor/autoload.php';
 
 include_once dirname(__DIR__).'../i_secao.evento.default.php';
