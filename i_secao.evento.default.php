@@ -7,21 +7,21 @@ include 'classes.php';
 
 $sql = "SELECT * FROM config";
 $tabela = mysqli_query($con,$sql);
-$dados = mysqli_fetch_array($tabela);
+$config = mysqli_fetch_array($tabela);
 
 // grava a variaveis para a cessão atual
-$_SESSION['evento_atual'] = $dados["evento_padrao"];
+$_SESSION['evento_atual'] = $config["evento_padrao"];
 
 $sql = "SELECT * FROM evento WHERE id_evento = {$_SESSION['evento_atual']}";
 $tabela = mysqli_query($con,$sql);
-$dados = mysqli_fetch_array($tabela);
+$evento = mysqli_fetch_array($tabela);
 
 // grava a variaveis para a cessão atual
-$_SESSION['evento_atual_nome'] = $dados["descricao"];
-$_SESSION['evento_iw'] = $dados['insc_web'];
-$_SESSION['evento_data_ini'] = $dados['data_ini'];
-$_SESSION['evento_data_fim'] = $dados['data_fim'];
-$_SESSION['evento_id_local'] = $dados['id_local'];
+$_SESSION['evento_atual_nome'] = $evento["descricao"];
+$_SESSION['evento_iw'] = $evento['insc_web'];
+$_SESSION['evento_data_ini'] = $evento['data_ini'];
+$_SESSION['evento_data_fim'] = $evento['data_fim'];
+$_SESSION['evento_id_local'] = $evento['id_local'];
 
 // pegar mensagem de alerta enviadas para a página
 # iniciar a variavel $msg
