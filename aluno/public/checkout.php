@@ -327,6 +327,8 @@ if (isset($_SESSION['msg_tipo'])) {
                             <option value="2">2 x R$ <?= number_format($curso['valor']/2,2,",",".") ?></option>
                             <option value="3">3 x R$ <?= number_format($curso['valor']/3,2,",",".") ?></option>
                             <option value="4">4 x R$ <?= number_format($curso['valor']/4,2,",",".") ?></option>
+                            <option value="4">5 x R$ <?= number_format($curso['valor']/5,2,",",".") ?></option>
+                            <option value="4">6 x R$ <?= number_format($curso['valor']/6,2,",",".") ?></option>
                         </select>                        
                     </div>
                 </div>

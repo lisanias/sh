@@ -62,7 +62,7 @@ function pg_statusf ($pg_status) {
 			return "Enviado";
 			break;
 		case 3:
-			return "OK, Enviado e confirmado";
+			return "Ok";
 			break;
 		default:
 			return " ";

@@ -45,7 +45,7 @@ $valorCent = $valor * 100;
 
 
 // Configure o ambiente
-$environment = Environment::sandbox();
+$environment = Environment::$ambiente();
 
 // Configure seu merchant
 $merchant = new Merchant($MerchantId, $MerchantKey);
@@ -144,6 +144,9 @@ $sql_pag_cartao = [
             'brand'=>$requisicao->getPayment()->getCreditCard()->getBrand(),
         ];
 $sql = db::sqlPagCartaoAdd($sql_pag_cartao);
+$result = db::connect($sql);
+
+$sql = "UPDATE matricula SET status = 3 WHERE id_matricula = $matricula";
 $result = db::connect($sql);
 
 // Redireciona para a página com a confirmação
