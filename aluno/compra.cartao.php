@@ -90,7 +90,7 @@ try {
    
 
     if ($status !== 1) {
-        $_SESSION["msg"] = "Pagamento não realizado. Mensagem da operadora do cartão: ". $returnMessage;
+        $_SESSION["msg"] = "Pagamento não realizado. (".$ambiente.") Mensagem da operadora do cartão: ". $returnMessage;
         $_SESSION['msg_tipo'] = "alert-warning";
         // Redireciona para home a página de pagamentos
         header("Location: public/checkout.php");
