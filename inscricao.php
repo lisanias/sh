@@ -10,6 +10,10 @@ $campo_cursor = '';
 if(isset($_SESSION['focus'])){
 		$campo_cursor = $_SESSION['focus'];
 }
+
+include 'r_vagas_disponiveis.php'; 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -23,14 +27,13 @@ if(isset($_SESSION['focus'])){
         <!--[if IE]><link rel="shortcut icon" href="img/favicon.ico"><![endif]-->
 		<link rel="icon" href="./img/favicon.png">
 
-        <link rel="stylesheet" href="./css/bootstrap.css">
         <style>
             body {
-                padding-top: 60px;
                 padding-bottom: 40px;
             }
         </style>
-        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+        
+        <link rel="stylesheet" href="./css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
 
         <script src="./js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
@@ -170,85 +173,10 @@ if(isset($_SESSION['focus'])){
 
                 <div class="row-fluid">
                     
-                    <!-- Coluna Formulario da esquerda -->
-                    <div class="span3">
-                    	
-                        <div class="hero-unit hide" >
-                        	<legend><i class="icon24" style="background-image:url(img/icon_cama&24.png);"></i>Vagas...</legend>
-                            <div style="font-size:.85em; line-height:120%">
-                            
-                            <?php 
-							/*
-							include 'r_vagas_disponiveis.php'; 
-							if ($vagas > 25) {
-									echo "Estamos com vagas.";
-									$vagas_disponivel = '';
-							}	else if ($vagas <= 40 && $vagas > 20) {
-									echo "Estamos com algumas vagas. Faça logo a sua inscrição.";
-									$vagas_disponivel = 'algumas';
-							}	else if ($vagas <= 20 && $vagas > 0) {
-									echo "Estamos com poucas vagas. Faça <strong style='color:red'>AGORA</strong> a sua inscrição.";
-									$vagas_disponivel = 'poucas';
-							} 	else {
-									echo "Infelizmente estamos sem vagas. Você pode fazer sua pré-inscrição que ficará em uma lista de espera ou entre em contato com a secretaria do SH.";
-									$vagas_disponivel = '0';
-							}
-							
-							
-							/ definir qual está selecionado e se for reixibição exibir o mesmo selecionado anteriormente...
-							$valor_opcao = (isset($_SESSION['input_hospedagem']))? $_SESSION['input_hospedagem'] : '';
-							
-							// opções para o campo hospedagem
-							if ($vagas < 1) {
-								$vagas_msg = "<span class='label label-important'>No momento estamos sem vagas para hospedagem!</span><br>&nbsp;<br>
-											Você poderá fazer a iscrição sem hospedagem, optado por dormir em outro lugar, por conta própria, ou poderá colocar sua inscrição em lista de espera.<br>
-											Quem não ficar hospedado no Seminário Hosana terá um desconto de R$ 80,00.";
-								if ($valor_opcao == 1){
-									$selecionado1 = "selected";
-									$selecionado2 = "";
-								} else {
-									$selecionado1 = "";
-									$selecionado2 = "selected";
-								}
-								$vagas_hospedagem_lista1 = "<option value='1' {$selecionado1} >Lista de espera</option>";
-								$vagas_hospedagem_lista2 = "<option value='0' {$selecionado2} >Sem hospedagem</option>";
-							} else {
-								if ($valor_opcao === 0){
-									$selecionado1 = "";
-									$selecionado2 = "selected";
-								} else {
-									$selecionado1 = "selected";
-									$selecionado2 = "";
-								}
-								$vagas_msg = "<div>Temos {$vagas_disponivel} vagas para hospedagem</div>";
-								$vagas_hospedagem_lista1 = "<option value='1' {$selecionado1} >Sim</option>";
-								$vagas_hospedagem_lista2 = "<option value='0' {$selecionado2} >Não</option>";
-							}
-							
-							*/
-							?>
-                            </div>
-
-                            <span class="clearfix"></span>
-                            
-                        </div>
-
-                        <div class="hero-unit">
-                            
-                            <legend><i class="icon-info-sign" ></i> Informações</legend>
-                            
-                            <li>A inscrição só estará efetivada após o pagamento da valor minimo (inscrição).
-                            <li>O valor da inscrição faz parte do valor total do módulo.
-                            <li>Em caso de não comparecimento na data do evento sem avivo prévio de 7 dias úteis, o aluno perde o valor da inscrição já pago.
-
-                            <li>Inscrição para o Congresso Hosana. 
-                            <span class="clearfix"></span>
-                        </div>
-                       
-                    </div>
+                   
                     
                     <!-- Coluna formulario da direita -->
-                    <div class="span6">
+                    <div class="span9">
                         
                       <!-- Conteúdo principal -->
                     
@@ -259,6 +187,12 @@ if(isset($_SESSION['focus'])){
                                 <p>Se você fez ou está fazendo algum curso, 
                                 participou de algum congresso e etc, já tem cadastro no Seminário Hosana.
                                 Nesse caso, faça login na <a href="aluno.login.php">Área do Aluno</a>.</p>
+                            </div>
+
+                            <!-- AVISO AOS ALUNOS -->
+                            <div class="alert <?= $config['estilo'] ?>" style="font-size: 1em; line-height: 120%;">
+                                <p><strong><?= $config['titulo_do_aviso'] ?></strong></p> 
+                                <p><?= $config['aviso_aos_alunos'] ?></p>
                             </div>
                         	
                             <!-- Formulario de inscrição -->                                   

@@ -274,7 +274,7 @@ error_reporting(E_ALL);
 	
 	// continuar colocando dados nas outras tabelas...
 	// fazer a matricula
-	
+
 	// através do id_evento e do id_curso
 	$sql = "SELECT * FROM modulo WHERE id_curso = '" . $input_curso . "' AND id_evento = '" . $_SESSION['evento_atual'] . "'";
 	$tabela = mysqli_query($con,$sql);
@@ -317,12 +317,12 @@ error_reporting(E_ALL);
             }
 	
 	$nova_matricula_id = mysqli_insert_id($con);
-			
+
 	// Pegar o nome do curso que o aluno está matriculando
 	$sql = "SELECT * FROM cursos WHERE id_curso = $input_curso";
 	$tabela = mysqli_query($con,$sql);
-	$dados = mysqli_fetch_array($tabela);
-	$curso_nome = $dados['nome_curso'];
+	$curso = mysqli_fetch_array($tabela);
+	$curso_nome = $curso['nome_curso'];
 	
 	mysqli_close($con);
 		
@@ -352,6 +352,9 @@ if ($desconto > 0){
 
 $hospedagem_txt = ($input_hospedagem == 1)?"Sim":"Não";
 
+$moduloValor = $dados['valor'];
+$moduloAvista = $dados['aVista'];
+
 // mensagem para aluno com vaga
 if ( $situacao_code == 2 ) {
 $email_msg_aluno = "
@@ -360,6 +363,7 @@ $email_msg_aluno = "
 		<title>Incrição do Hosana</title>
 	</head>
 	<body>
+		<img src='cid:logo' width='500px' height='100px'>
 		<h3>Oi $input_nome $input_sobrenome,</h3>
 		<p>A sua inscrição para o Seminário Hosana - $evento_atual_nome foi realizada com sucesso.</p>
 		<div style='background-color: #EEE; margin: 1em 2em; padding: 1em 2em; border-radius: 4px;'>
@@ -367,31 +371,15 @@ $email_msg_aluno = "
 			Curso: <strong>$curso_nome - $evento_atual_nome;</strong><br />
 			Módulo: <strong>$modulo;</strong><br />
 			Hospedagem: <strong>$hospedagem_txt;</strong><br />
-			Valor do módulo: <strong>$valor_modulo;</strong><br />
-			Valor a pagar: $pagar_texto;<br />
-			Pagamento mínimo: <strong>$valor_inscricao_previa;</strong><br />
+			Valor do módulo: <strong>$moduloValor</strong><br />
+			Valor para pagamento a vista: $moduloAvista<br />
 			Data: De <strong>$evento_data_ini </strong>a <strong>$evento_data_fim</strong>;<br />
-			Situação: Aguardando pagamento da inscrição prévia;<br />
+			Situação: Aguardando pagamento;<br />
 			Igreja: <strong>$input_igreja</strong>.</p>
 			<p>Login: <strong>$input_login</strong><br />			
 		</div>
-	    <p><br>Ressaltamos que para a confirmação da inscrição, será necessário o <strong>pagamento e o envio</strong> do comprovante, <em><strong>exclusivamente pela área do aluno do sistema on-line do Seminário Hosana</strong></em>, até o dia $data_comprovante. Caso contrário a sua inscrição será cancelada e sua vaga será liberada para outro aluno. Não envie comprovante de pagamento por e-mail, correio, fax, etc, pois só serão considerados os comprovantes enviados pela área do aluno do sistema on-line do Seminário Hosana</p>
-		<p>Para acessar área do aluno no sistema on-line do Seminário Hosana você deve entrar no site do Seminário Hosana e clicar em inscriçoes on-line e inserir seus login ($input_login) e senha.</p>
-		<p>Caso tenha ocorrido o cancelamento, e você ainda deseja participar do módulo, poderá pedir à secretaria do S.H para liberar a inscrição, observando a disponibilidade de vaga.</p>
-	    <table style='padding:5px; background-color: #EEE;'>
-		  <tr>
-			<td>Valor da Incrição Prévia (pagamento minimo para garantir vaga)</td>
-			<td align='right'>$valor_inscricao_previa</td>
-		  </tr>
-		  <tr>
-			<td colspan='2'>Pagar inscrição prévia e enviar comprovante até $data_comprovante.</td>
-		  </tr>
-		</table>
-		<br />
-		<br />
-		<h3>Conta para depósito de inscrição prévia e parcelas:</h3>
-		<p><span style='color:red; font-weight:bold'>BANCO BRADESCO</span><br />
-		Agência: <strong>0053-1</strong> C/C: <strong>121513-2</strong></p>
+		<p><br>
+		Para continuar e efetuar o pagamento, entre na <a href='https://shpg.seminariohosana.com.br/aluno.login.php'>área do aluno</a>  e selecione “Pagar com cartão”.</p>	    
 		<p><br />ATT.<br /> Equipe do Hosana</p>
 		<br />
 		<P>CONTATOS:<br>
@@ -400,6 +388,8 @@ $email_msg_aluno = "
 		<br />
 		<p style='font-size:small'>EMAIL ENVIADO AUTOMATICAMENTE PELO SISTEMA. Não responda este e-mail e não utilize este endereço para comunicar com o S.H. Caso tenha dúvidas entre em contato com a secretaria do S.H. pelo e-mail secretaria@seminariohosana.com.br ou pelo telefone (43) 3325-1424.</p>
 		<br /><br />&nbsp;
+
+		
 	</body>
 </html>
 ";
@@ -473,6 +463,8 @@ try {
 	$mail->Subject  =   'Seminário Hosana - Cadastro de Alunos - NAO RESPONDER'; //Titulo do e-mail que será enviado
 	$mail->MsgHTML($email_msg_aluno) ;
 	$mail->AltBody = 'Seu email não suporta texto HTML';
+	
+	$mail->AddEmbeddedImage('img/logohosana_email.png', 'logo');
 
 	/**
 	 * 

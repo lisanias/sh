@@ -7,8 +7,6 @@
 
 include 'i_secao.evento.default.php';
 
-
-
 // Pegar variáveis passadas da página anterior
 $input_nome = $_SESSION['input_nome'];
 $input_sobrenome = $_SESSION['input_sobrenome'];
@@ -38,15 +36,13 @@ session_destroy();
         <meta name="viewport" content="width=device-width">
         <!--[if IE]><link rel="shortcut icon" href="img/favicon.ico"><![endif]-->
 		<link rel="icon" href="img/favicon.png">
-
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
         <style>
             body {
-                padding-top: 60px;
                 padding-bottom: 40px;
             }
         </style>
-        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="css/main.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
@@ -65,116 +61,82 @@ session_destroy();
         </script>
 
     </head>
-    <body onload="vermsg('<?=$msg?>')">
-        <!--[if lt IE 7]>
-            <p class="chromeframe">Você está usando um <strong>navegador desatualizado</strong>. Por vavor <a href="http://browsehappy.com/">atualize seu navegador</a> ou <a href="http://www.google.com/chromeframe/?redirect=true">instale o Google Chrome</a> para uma utilização mais eficiente do sistema.</p>
-        <![endif]-->
+    <body onload="vermsg('<?=$msg?>')">        
 
-        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
+ 	<div class="container">    
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <?= LOGO ?>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li><a href="#" title="selecione outro evento..."><?= $evento_atual_nome ?></a></li>
-                            <li><a href="./aluno.login.php" title="Entrar no sistema">Login</a></li>
-                        </ul>
-                    </div><!--/.nav-collapse -->
-                </div>
-            </div>
+        <?php include 'm_top.alunos.php'; ?>
+        
+        <div class="row">
+            <div class="row-fluid" style="background-image:url(img/logohosana_icon.svg); background-position: left center; background-repeat:no-repeat; background-size: 48px 48px">
+                <h3 style="padding-left:55px">Seminario Hosana</h3>
+            </div><br />
+            
+                <div class="span12">
+                <!-- Conteúdo principal -->
+                <div class="alert alert-info">
+                    <h3>Inscrição realizada com sucesso</h3>
+                    <p style="text-transform:uppercase; color:#000; text-align:center;"><strong><?=$input_nome?></strong></p>
+                    <p>Obrigado por se inscrever no do Seminário Hosana<br /> <strong><?= $curso_nome ?></strong>.</p>
+                    <p>
+                        <?php $situacao_code = 2;
+                        if ($situacao_code == 2) {
+                            echo "Parabéns, agora você é um aluno do Seminário Hosana e certamente você vai ser muito abençoado por Deus nessa jornada. Agora, acesse a área do aluno, entre com seu usuário e senha, e faça o pagamento clicando em “pagar com cartão”.";
+                        } else {
+                            echo 'e encontra-se em <strong>lista de espera</strong>. Se surgirem vagas, a secretaria do SH irá entrar em contato, informando-o de como proceder. Não faça nenhum depósito até que receba instruções da secretaria, disponibilizando sua vaga e liberando sua inscrição.';
+                        }
+                        ?></p>
+                    <p>Em caso de dúvida, contatar a secretaria do hosana nos endereços indicados no rodapé desta página.</p>
+                </div>       
+            </div>  
         </div>
 
- 	<div class="container">            
-            <div class="row">
-                <div class="row-fluid" style="background-image:url(img/h48.png); background-position: left center; background-repeat:no-repeat;">
-                	<h3 style="padding-left:55px">Seminario Hosana</h3>
-                </div><br />
-                <div class="row-fluid">
-                    <div class="span6">
-                      <!-- Conteúdo principal -->
-                        <div class="alert alert-info">
-                            <h3>Inscrição realizada com sucesso</h3>
-                            <p style="text-transform:uppercase; color:#000; text-align:center;"><strong><?=$input_nome?></strong></p>
-                            <p>Obrigado por se inscrever no do Seminário Hosana<br /> <strong><?= $curso_nome ?></strong>.</p>
-                            
-                                <?php 
-                                if ($situacao_code == 2) {
-                                    echo "<p>Estaremos aguardando o <strong>pagamento e o envio</strong> do respectivo comprovante, <em><strong>exclusivamente pela área do aluno do sistema on-line do Seminário Hosana</strong></em>. Para isso, acesse a área do aluno, entre com seu usuário e senha, e envie o comprovante de pagamento, lembrando que só serão válidos os comprovantes enviados dessa forma, portanto não envie nenhum comprovante por e-mail.</p><p>Se o comprovante não for enviado até <strong> $data_comprovante</strong>, sua inscrição será cancelada e a vaga liberada para outro aluno, e só poderá ser ativada novamente pela secretaria se, quando solicitado, ainda houver vagas.";
-                                } else {
-                                    echo 'e encontra-se em <strong>lista de espera</strong>. Se surgirem vagas, a secretaria do SH irá entrar em contato, informando-o de como proceder. Não faça nenhum depósito até que receba instruções da secretaria, disponibilizando sua vaga e liberando sua inscrição.';
-                                }
-                                ?></p>
-
-                            <p>Em caso de dúvida, contatar a secretaria do hosana nos endereços indicados no rodapé desta página.</p>
-						</div>
-                        
-                        <div class="alert">
-                            <h4>
-                            	<?= $input_nome ?> <?= $input_sobrenome ?>
-                            </h4>
-                            <p>
-                            	<br>
-                                Curso: <?= $curso_nome ?><br>
-                                Modulo: <?= $modulo ?><br>
-                                Pagar e enviar comprovante até: <?= $data_comprovante ?><br>
-                                Hospedagem: <?= $hospedagem_txt ?><br>
-                                E-mail: <?= $inputEmail ?><br>
-                            </p>
-                            <p>
-                            	
-                            </p>
-                        </div>
-                    </div>    
-                    <div class="span6">
-                        <div class="row-fluid">
-                            <img src="img/h150.png"><br />
-                            <h3>Área do Aluno</h3>
-                                <?php
-                                include 'aluno.form.login.php';                 
-                                ?>
-                        </div>
-                        <div class="row-fluid">
-                            <a href="inscricao.php" class="btn btn-large btn-primary">Nova Inscrição</a>
-                        </div>
+        <div class="row">
+            <div class="span3"></div>
+            <div class="span6">
+                <div class="hero-unit">
+                    <div class="row-fluid text-center">
+                        <img src="img/logohosana.svg" width="150" height="150">
+                        <h3>Área do Aluno</h3>
                     </div>
-                </div><!-- Div com duas colunas informativa | opcoes -->
-            </div><!-- Div Row 1 -->
-            <!-- Linha com colunas para informações auxiliares  -->
-            <div class="row">
-                <div class="span4">
-                    <address>
-                      <i class="icon-home"></i><strong> Escritório Administrativo</strong><br>
-                      Rua Caraíbas, nº 424<br>
-                      Vila Casoni - 86026-560 - Londrina - PR<br>
-                    </address>
+                    
+                        <?php
+                        include 'aluno.form.login.php';                 
+                        ?>
                 </div>
-                <div class="span4">
-                    <address>
-                      <i class="icon-info-sign"></i><strong> Contato</strong><br>
-                      <abbr title="Phone">Tel:</abbr> (43) 3325 1424<br>
-                      <a href="mailto:secretaria@seminariohosana.com.br">secretaria@seminariohosana.com.br</a><br>
-                    </address>
-                </div>
-                <div class="span4">
-                    <address>
-                    	<i class="icon-question-sign"></i><strong> Suporte Técnico</strong><br>
-                    	<abbr title="Telefone Celular">Tel:</abbr> (43) 9152-2015 <br />
-                        <a href="mailto:pastorlisanias@gmail.com">pastorlisanias@gmail.com</a>
-                    </address>
+                <div class="row-fluid">
                 </div>
             </div>
-            <hr>
-            <footer>
-                <p><img src="img/favicon.png" alt="WebiGSiS" width="24" height="24"> &copy; WebiGSiS 2013 </p>
-            </footer>
-        </div> <!-- /container -->
+        </div><!-- Div Row 1 -->
+        <!-- Linha com colunas para informações auxiliares  -->
+        <div class="row">
+            <div class="span4">
+                <address>
+                    <i class="icon-home"></i><strong> Escritório Administrativo</strong><br>
+                    Rua Caraíbas, nº 424<br>
+                    Vila Casoni - 86026-560 - Londrina - PR<br>
+                </address>
+            </div>
+            <div class="span4">
+                <address>
+                    <i class="icon-info-sign"></i><strong> Contato</strong><br>
+                    <abbr title="Phone">Tel:</abbr> (43) 3325 1424<br>
+                    <a href="mailto:secretaria@seminariohosana.com.br">secretaria@seminariohosana.com.br</a><br>
+                </address>
+            </div>
+            <div class="span4">
+                <address>
+                    <i class="icon-question-sign"></i><strong> Suporte Técnico</strong><br>
+                    <abbr title="Telefone Celular">Tel:</abbr> (43) 9152-2015 <br />
+                    <a href="mailto:pastorlisanias@gmail.com">pastorlisanias@gmail.com</a>
+                </address>
+            </div>
+        </div>
+        <hr>
+        <footer>
+            <p><img src="img/favicon.png" alt="WebiGSiS" width="24" height="24"> &copy; WebiGSiS 2013 </p>
+        </footer>
+    </div> <!-- /container -->
 
         
         <!-- MODAL -->

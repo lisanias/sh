@@ -3,14 +3,24 @@
         <legend>Login</legend>
         <input type='hidden' name='submitted' id='submitted' value='1'/>
 
-        <label for='usuario' >Usuário:</label>
-        <input type='text' name='usuario' id='username'  maxlength="50" required />
+        
+        <div class="control-group">
+            <label class="control-label" for='usuario' >Usuário:</label>
+            <div class="controls">
+                <input type="text" id="usuario" name="usuario"  maxlength="50" required /> 
+            </div>
+        </div>
 
-        <label for='senha' >Senha:</label>
-        <input type='password' name='senha' id='password' maxlength="50" required />
+        <div class="control-group">
+            <label class="control-label" for='senha' >Senha:</label>
+            <div class="controls">
+                <input type="password" id="senha" name="senha" maxlength="50" required /> 
+            </div>
+        </div>
 
         <br><input type='submit' name='Submit' value='Entrar' />
     </fieldset>
 </form>
 
 <a href="aluno.recuperar.senha.php">Esqueceu a sua senha? </a>
+

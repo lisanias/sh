@@ -71,10 +71,10 @@ include 'i_secao.evento.default.php';
                             <div class="alert alert-info">
                                 <div style="text-align:center;">
                                 	<h3 class="text-info">Data do Próximo Módulo:</br>
-                                    <?= date('d', strtotime($dados['data_ini']) ) ?> 
-                                    a <?= date('d', strtotime($dados['data_fim']) ) ?> 
-                                    de <?= nomeDoMes(date('m', strtotime($dados['data_ini']) ) ) ?> 
-                                    de <?= date('Y', strtotime($dados['data_fim']) ) ?></h3>
+                                    <?= date('d', strtotime($evento['data_ini']) ) ?> 
+                                    a <?= date('d', strtotime($evento['data_fim']) ) ?> 
+                                    de <?= nomeDoMes(date('m', strtotime($evento['data_ini']) ) ) ?> 
+                                    de <?= date('Y', strtotime($evento['data_fim']) ) ?></h3>
                                 </div>
                             </div>
                         </div>
