@@ -4,7 +4,7 @@
  * 
  */
 
-$ambiente = 'production'; // sandbox = teste | production - produção
+$ambiente = 'sandbox'; // sandbox = teste | production - produção
 $softDescriptor = "";
 
 if ($ambiente == 'sandbox') {

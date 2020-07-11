@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors','On');
 
 include './i_secao.evento.default.php';
-include './aluno./config.ini.php';
+include './aluno/config.ini.php';
 
 // verificar se tem algum campo predefinido para focar
 $campo_cursor = '';
