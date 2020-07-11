@@ -73,10 +73,10 @@ function pg_statusf ($pg_status) {
 function pg_formaf ($pg_forma) {
 	switch ($pg_forma) {
 		case 1:
-			return "Crédito";
+			return "Cartão de Crédito";
 			break;
 		case 2:
-			return "Débito";
+			return "Cartão de Débito";
 			break;
 		case 3:
 			return "Espécie";
@@ -88,7 +88,7 @@ function pg_formaf ($pg_forma) {
 			return "Cheque";
 			break;
 		case 6:
-			return "Boleto";
+			return "Cartão de Crédito - On Line";
 			break;
 		case 9:
 			return "Outro";
@@ -102,13 +102,16 @@ function pg_formaf ($pg_forma) {
 function pg_reff ($pg_ref) {
 	switch ($pg_ref) {
 		case 1:
-			return "Pagamento integral";
+			return "Pagamento a vista";
 			break;
 		case 2:
 			return "Pagamento da inscriçao prévia";
 			break;
 		case 3:
-			return "Pagamento de prestação";
+			return "Pagamento de parcela";
+			break;
+		case 4:
+			return "Parcelado no cartão de crédito";
 			break;
 		case 9:
 			return "Outro";

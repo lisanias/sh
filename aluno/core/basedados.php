@@ -10,6 +10,7 @@ class db {
 
     function sqlPagamentoAdd($dados)
     {
+        
         $sql = "INSERT INTO pagamento ( 
             id_matricula, 
             data_pg, 
@@ -17,7 +18,8 @@ class db {
             valor,
             forma_pg,
             parcelas,
-            status
+            status,
+            ref_a
             )
 
         VALUES ( 
@@ -27,7 +29,8 @@ class db {
             '" . $dados['valor'] . "',
             '6',
             '" . $dados['parcela'] ."',
-            '" . $dados['status'] . "'
+            '" . $dados['status'] . "',
+            '" . $dados['ref_a'] . "'
             )";
         return $sql;
     }

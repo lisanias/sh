@@ -5,8 +5,8 @@
  * 
  */
 
-ini_set("display_errors", 1);
-error_reporting(E_ALL) ;
+//ini_set("display_errors", 1);
+//error_reporting(E_ALL) ;
 
 /* 
  * Segurança - ver se está logado
@@ -226,8 +226,11 @@ if (isset($_SESSION['msg_tipo'])) {
                         <small class="text-muted"><?= $_SESSION['evento_atual_nome'] ?></small>                            
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
-                        <small>Em <?= $pag_cartao['parcelas'] ?>x no cartão</small>
-                        <strong>R$ <?= $pag_cartao['amount']/100; ?></strong>
+                        <small>Valor</small>
+                        <div class='text-right'>
+                            <strong>R$ <?= $pag_cartao['amount']/100; ?></strong>
+                            <br><small>Em <?= $pag_cartao['parcelas'] ?>x no cartão</small>
+                        </div>
                     </li>
                 </ul>
             </div> 

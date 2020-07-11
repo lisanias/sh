@@ -127,9 +127,13 @@ try {
  * status: 1 para pendente, ou seja se não der certo e 3 para confirmado
  */
 
-$sqlPagamento = ["id_matricula"=>$matricula,"valor"=>$valor, "parcela"=>$parcela, "status"=>'3'];
+$ref_a = $parcela==1 ? '1' : '4'; // define a que se refere o pagamento (no caso se é cartão a vista ou cartão parcelado)
+
+$sqlPagamento = ["id_matricula"=>$matricula,"valor"=>$valor, "parcela"=>$parcela, "status"=>'3', "ref_a"=>$ref_a ];
 $sql = db::sqlPagamentoAdd($sqlPagamento);
 $result = db::connect($sql);
+
+
 
 $sql_pag_cartao = [
             'pagamento_id'=>$result,
@@ -144,12 +148,12 @@ $sql_pag_cartao = [
             'brand'=>$requisicao->getPayment()->getCreditCard()->getBrand(),
         ];
 $sql = db::sqlPagCartaoAdd($sql_pag_cartao);
-$result = db::connect($sql);
+$pgCartaoResult = db::connect($sql);
 
 $sql = "UPDATE matricula SET status = 3 WHERE id_matricula = $matricula";
-$result = db::connect($sql);
+$matriculaResult = db::connect($sql);
 
 // Redireciona para a página com a confirmação
 
-$_SESSION['pg_cartao'] = $result;
+$_SESSION['pg_cartao'] = $pgCartaoResult;
 header("Location: public/pagamento.realizado.php");

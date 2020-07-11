@@ -3,6 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors','On');
 
 include './i_secao.evento.default.php';
+include './aluno./config.ini.php';
 
 // verificar se tem algum campo predefinido para focar
 $campo_cursor = '';
@@ -182,8 +183,16 @@ include 'r_vagas_disponiveis.php';
                     
                         <div class="hero-unit form-horizontal">
 
+                            <?php if ($ambiente == 'sandbox') { ?>
+                              <!-- AVISO AOS pela base de dados -->
+                              <div class="alert alert-danger">
+                                  <h3>Pagamento em plataforma de teste!</h3>
+                              </div>
+                            <?php } ?>
+
+                            <!-- AVISO AOS ALUNOS -->
                             <div class='alert' style="font-size: 1em; line-height: 120%;">
-                                <p><strong>Cadastro para inscrição de novos alunos.</strong></p> 
+                                <h3>Cadastro para inscrição de novos alunos.</h3> 
                                 <p>Se você fez ou está fazendo algum curso, 
                                 participou de algum congresso e etc, já tem cadastro no Seminário Hosana.
                                 Nesse caso, faça login na <a href="aluno.login.php">Área do Aluno</a>.</p>
@@ -191,8 +200,8 @@ include 'r_vagas_disponiveis.php';
 
                             <!-- AVISO AOS ALUNOS -->
                             <div class="alert <?= $config['estilo'] ?>" style="font-size: 1em; line-height: 120%;">
-                                <p><strong><?= $config['titulo_do_aviso'] ?></strong></p> 
-                                <p><?= $config['aviso_aos_alunos'] ?></p>
+                                <h3><?= $config['titulo_do_aviso'] ?></h3> 
+                                <?= $config['aviso_aos_alunos'] ?>
                             </div>
                         	
                             <!-- Formulario de inscrição -->                                   
@@ -206,8 +215,9 @@ include 'r_vagas_disponiveis.php';
                                     <label class="control-label" for="inputCurso">Selecione um curso </label>
                                     <div class="controls">
                                        <select class="input-large" id="inputCurso" name="inputCurso"  placeholder="Selecione um curso...">
-                                       		<option selected></option>
-                                            <?php
+                                           <option selected></option>
+                                           
+                      <?php
 												//faço a conexão com o banco
 												$con_curso = mysqli_connect('localhost', 'sagra213_hosana', 'lucas#3$1', 'sagra213_hosana');
 												// verificar a conexão
@@ -226,27 +236,29 @@ include 'r_vagas_disponiveis.php';
 													
 												// mostrar os dados	
 												$tabela = mysqli_query($con_curso,$sql);								
-												$selecionado = '';
+                        $selecionado = '';                        
+                        
 												while ( $dados = mysqli_fetch_array($tabela) ) {
-                                                        if($dados['id_curso']>3){
-                                                            continue;
-                                                        }
-														if (isset($_SESSION['input_curso'])){
-															$selecionado = ($_SESSION['input_curso'] == $dados['id_curso'])?'selected':'';
-														}
-														# $disabled = ($dados['id_curso'] == 7? 'disabled': ''); # para o caso de algum curso não estar disponivel
-														
-														echo '<option value="'.$dados['id_curso'].'" '. $selecionado .' '. $disabled .' >'.$dados['id_curso'] .' - <abbr title="'. $dados['nome_curso'] .'">'. $dados['apelido'] .'</abbr></option>';
+                            if( $dados['id_curso']<4 || $dados['id_curso']==5 ){
+                            
+                              // ver se tinha algum ja selecionado quando dados incompletos...
+                              if (isset($_SESSION['input_curso'])){
+                                $selecionado = ($_SESSION['input_curso'] == $dados['id_curso'])?'selected':'';
+                              }
+
+                              echo '<option value="'.$dados['id_curso'].'" '. $selecionado .' '. $disabled .' >'.$dados['id_curso'] .' - <abbr title="'. $dados['nome_curso'] .'">'. $dados['apelido'] .'</abbr></option>';    
+                            }
 													}
 												mysqli_close($con_curso);
-											?>
+                      ?>
+                      
                                        </select>
                                        <span class="label label-info"><?=$_SESSION['evento_atual_nome'];?></span>
                                        <i class="icon-fire"></i>
                                        <br><?php echo($campo_cursor=='inputCurso'?"<span class='label label-warning'>Preenchimento Obrigatório</span>":''); ?> 
                                     </div>
                                 </div>
-                                
+                               
                                 <div class="control-group hide">
                                     <label class="control-label" for="inputHospedagem">Hospedagem </label>
                                     <input type="hidden" name="inputHospedagem" value='1'>

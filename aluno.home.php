@@ -11,6 +11,7 @@ error_reporting(E_ALL) ;
 
 include("aluno.seguranca.php"); // Inclui o arquivo com o sistema de segurança
 include("i_funcoes.php");
+include './aluno./config.ini.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -78,6 +79,14 @@ include("i_funcoes.php");
                         <h4 class="text-info">Próximo Modulo: <?= $_SESSION['evento_atual_nome'] ?> (<?= date("d/m/Y", strtotime($_SESSION['evento_data_ini'])); ?> a <?= date("d/m/Y", strtotime($_SESSION['evento_data_fim'])); ?>)</h4>
                     </div>
                 </div>
+
+                <?php if ($ambiente == 'sandbox') { ?>
+                    <!-- AVISO AOS pela base de dados -->
+                    <div class="alert alert-danger text-center">
+                        <strong>Pagamento em plataforma de teste!</strong>
+                    </div>
+                <?php } ?>
+
                 <div class="row-fluid" style="padding-top: 25px;">
                 	<div class="span4">
                     	<div class="control-group">

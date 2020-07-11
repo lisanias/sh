@@ -4,8 +4,8 @@
  * 
  */
 
-$ambiente = 'production'; // sandbox = teste | production - produção
-$softDescriptor = "HOSANA";
+$ambiente = 'sandbox'; // sandbox = teste | production - produção
+$softDescriptor = "";
 
 if ($ambiente == 'sandbox') {
     $MerchantId = 'af24002f-f265-4fd8-af62-20b6705bbc69';
