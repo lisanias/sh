@@ -1,3 +1,7 @@
+<?php
+// Verificar o dominio que está para inserir link de login em alunos e sistema
+$link_aluno = $_SERVER['PHP_SELF']=='login.php'?'https://aluno.seminariohosana.com.br':'../';
+?>
 <div class="navbar navbar-fixed-top">
 	
 	<div class="navbar-inner">
@@ -10,7 +14,7 @@
 				<span class="icon-bar"></span>
 			</a>
 			
-			<a class="brand" href="../">
+			<a class="brand" href="./">
 				Hosana.SiS
 			</a>
 			<span class="brand" style="color: #F90">
@@ -45,12 +49,21 @@ if (!isset($_SESSION['logado'])) {
 				<ul class="nav pull-right">
 					
 					<li class="">						
-						<a href="../" class="">
-							<i class="icon-chevron-left"></i>
-							Voltar para home
+						<a href="https://seminariohosana.com.br" class="">
+							<i class="icon-globe"></i>
+							Site
 						</a>
 						
 					</li>
+
+					<li class="">						
+						<a href="<?=$link_aluno?>" class="">
+							<i class="icon-user"></i>
+							Área do aluno
+						</a>
+						
+					</li>
+
 				</ul>
 				
 			</div><!--/.nav-collapse -->

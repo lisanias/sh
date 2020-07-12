@@ -5,8 +5,9 @@
  * para ser usado por todos os alunos no primeiro modulo de uso do sistema;
  * formulário para todos os novos alunos
  */
-error_reporting(E_ALL) ;
+
 include 'i_secao.evento.default.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -54,13 +55,13 @@ include 'i_secao.evento.default.php';
                     <div class="row-fluid">
 
                         <!-- Coluna Formulario da esquerda -->
-                        <div class="span4">
+                        <div class="span6">
                             <div class="hero-unit">
                                 <div class="well well-small"><strong>Já é ou foi aluno?</strong> Faça aqui seu login e confirme sua presença no próximo módulo.</div>
                                 <?php include 'aluno.form.login.php'; ?>
                             </div>
                         </div>
-                        <div class="span4">
+                        <div class="span6">
                             <div class="hero-unit">
                                 <strong>Ainda não é aluno?</strong> Faça seu cadastro e se increva em um dos cursos do SH.
                                 <br /><br />
@@ -78,22 +79,7 @@ include 'i_secao.evento.default.php';
                                 </div>
                             </div>
                         </div>
-                        <div class="span4">
-                            <div class=" ">
-                                <legend><i class="icon-info-sign" ></i> Informações</legend>
-                                
-                                <li>A inscrição só estará efetivada após o pagamento da valor minimo (inscrição).</li>
-                                <li>O valor da inscrição faz parte do valor total do módulo.</li>
-                                <li>Em caso de não comparecimento na data do evento sem aviso prévio de 7 dias úteis, o aluno perde o valor da inscrição já pago.</li>
-
-                                <?php 
-                               
-                                ?>
-
-
-                                <span class="clearfix"></span>
-                            </div>
-                        </div>
+                        
                     </div>
             </div>
             <!-- Linha com colunas para informações auxiliares  -->
@@ -112,7 +98,7 @@ include 'i_secao.evento.default.php';
                       <a href="mailto:secretaria@seminariohosana.com.br">secretaria@seminariohosana.com.br</a><br>
                     </address>
                 </div>
-                <div class="span4">
+                <div class="span3">
                     <address>
                         <i class="icon-question-sign"></i><strong> Suporte Técnico</strong><br>
                         <abbr title="Telefone Celular">Tel:</abbr> (43) 99152-2015 <br />
@@ -125,7 +111,7 @@ include 'i_secao.evento.default.php';
 
             <footer>
                 <p><img src="img/favicon.png" alt="WebiGSiS" width="24" height="24"> 
-                    &copy; WebiGSiS 2013 - 2019 | <?= exec('git log --pretty="%h" -n1 HEAD') ?>
+                    &copy; WebiGSiS 2013 - 2020 | <?= exec('git log --pretty="%h" -n1 HEAD') ?>
                 </p>
             </footer>
             
