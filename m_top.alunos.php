@@ -1,6 +1,6 @@
 <?php
 // Verificar o dominio que está para inserir link de login em alunos e sistema
-$link = $_SERVER['PHP_SELF']=='login.php'?'https://sis.seminariohosana.com.br':'./app/';
+$link = $_SERVER['SERVER_NAME']=='aluno.seminariohosana.com.br'?'https://sis.seminariohosana.com.br':'app/login.php';
 ?>
 <div class="navbar" style='margin-top:1em'>
   <div class="navbar-inner">
@@ -8,7 +8,6 @@ $link = $_SERVER['PHP_SELF']=='login.php'?'https://sis.seminariohosana.com.br':'
       <?= LOGO ?>
       <ul class="nav pull-right">
           <?php
-            //$link = $_SERVER['SERVER_NAME']=='aluno.seminariohosana.com.br'?'https://app.seminariohosana.com.br':'app/login.php';
             if(isset($_SESSION["usuario"])){
           ?>
           <li><a href="aluno.home.php" title="Área dos Alunos"><i class="icon-home"></i> Home</a></li>
