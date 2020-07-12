@@ -11,7 +11,7 @@ error_reporting(E_ALL) ;
 
 include("aluno.seguranca.php"); // Inclui o arquivo com o sistema de segurança
 include("i_funcoes.php");
-include './aluno./config.ini.php';
+include './aluno/config.ini.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
