@@ -80,9 +80,10 @@
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a href="#">Ajuda</a></li>
-                        <li><a href="sistema.sobre.php">Sobre</a></li>
-                        <li><a href="sistema.inserir.evento.php">Adicionar Evento e módulos</a></li>
+                        <li><a href="./lista.email.telefone.php"><i class="icon-tasks"></i> Listar todos os alunos</a></li>
+                        <li><a href="#"><i class="icon-question-sign"></i> Ajuda</a></li>
+                        <li><a href="sistema.sobre.php"><i class="icon-info-sign"></i> Sobre</a></li>
+                        <li><a href="sistema.inserir.evento.php"><i class="icon-calendar"></i> Adicionar Evento e módulos</a></li>
                     </ul>
                 </li>
 
@@ -110,7 +111,7 @@
                         <li><a href="./print_pdf.etiquetas22.php" target="_blank">Etiquetas</a></li>
                         
                     </ul>
-                </li><!--
+                </li><!-- / -->
 
             
 			</ul>
