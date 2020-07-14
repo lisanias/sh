@@ -46,8 +46,8 @@ class db {
             //$_SESSION['msg'] = 'Ha um erro ao executar a pesquisa na base de dados [' . $con->error . ']';
             echo 'Ha um erro ao executar a pesquisa na base de dados [' . $con->error . ']';
             // Redireciona para home do aluno
-            die();
             header("Location: ../aluno.home.php");
+            die();
         }
 
         $id = $con->insert_id;

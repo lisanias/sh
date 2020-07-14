@@ -136,7 +136,7 @@ while ($dados = mysqli_fetch_array($consulta)) {
     echo "<br>Obs: " . $dados['obs'];
 
 
-	$sqlsoma = " SELECT SUM(valor) AS total FROM pagamento WHERE id_matricula = ". $id_matricula;
+	$sqlsoma = " SELECT SUM(valor) AS total FROM pagamento WHERE id_matricula = ". $id_matricula. " and status>1";
 
 	$consultasoma = mysqli_query($con,$sqlsoma);
 	$dadossoma = mysqli_fetch_array($consultasoma);

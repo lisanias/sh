@@ -22,15 +22,13 @@ include("i_funcoes.php");
         <meta name="description" content="Área do aluno, onde acompanha os modulos feitos, pagamentos, etc...">
         <meta name="viewport" content="width=device-width">
         <!--[if IE]><link rel="shortcut icon" href="img/favicon.ico"><![endif]-->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="icon" href="img/favicon.png">
         
         
         <style>
             body {
-                padding-top: 60px;
                 padding-bottom: 40px;
             }
         </style>        
@@ -62,22 +60,9 @@ include("i_funcoes.php");
 
         <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <?= LOGO ?>
-                    <div class="nav-collapse collapse">
-                        <?php include 'm_top.alunos.php'; ?>
-                    </div><!--/.nav-collapse -->
-                </div>
-            </div>
-        </div>
+   
         <div class="container">            
+            <?php include 'm_top.alunos.php'; ?>
             <div class="row">
                 <div class="row-fluid" style="background-image:url(img/h48.png); background-position: left center; background-repeat:no-repeat;">
                 	<div class="span8" style="height:48px;">
