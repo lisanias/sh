@@ -1,14 +1,14 @@
 <?php
 /*
- * 
+ *
  * Página de pagamento na cielo
- * 
+ *
  */
 
 ini_set("display_errors", 1);
 error_reporting(E_ALL) ;
 
-/* 
+/*
  * Segurança - ver se está logado
  */
 
@@ -64,11 +64,11 @@ include(dirname(__DIR__)."../../i_funcoes.php");
 /*
  * Pegar curso selecionado
  */
-$sql = "SELECT * FROM matricula 
-		INNER JOIN 
-			modulo ON matricula.id_modulo = modulo.id_modulo 
-		INNER JOIN 
-			cursos ON modulo.id_curso = cursos.id_curso 
+$sql = "SELECT * FROM matricula
+		INNER JOIN
+			modulo ON matricula.id_modulo = modulo.id_modulo
+		INNER JOIN
+			cursos ON modulo.id_curso = cursos.id_curso
 		WHERE id_aluno = {$_SESSION['id_aluno']} AND matricula.id_evento = {$_SESSION['evento_atual']}";
 $consulta = mysqli_query($con,$sql);
 $curso = mysqli_fetch_array($consulta);
@@ -127,8 +127,8 @@ if (isset($_SESSION['msg_tipo'])) {
             max-width: 960px;
         }
 
-        .lh-condensed { 
-            line-height: 1.25; 
+        .lh-condensed {
+            line-height: 1.25;
         }
     </style>
 
@@ -163,7 +163,7 @@ if (isset($_SESSION['msg_tipo'])) {
             <?=  $_SESSION["nome"]. " " . $_SESSION["sobrenome"] ; ?>
         </div>
     </nav>
-    
+
     <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="img/logohosana_icon.svg" alt="" width="72" height="72">
         <h2>Pagamento com cartão</h2>
@@ -171,7 +171,7 @@ if (isset($_SESSION['msg_tipo'])) {
     </div>
 
     <!-- Mensagem de erro -->
-    <?php if (isset($msg)) { ?>        
+    <?php if (isset($msg)) { ?>
         <div class="alert <?=$msg_tipo?>" align="center" role="alert">
             <?=$msg?>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -214,7 +214,7 @@ if (isset($_SESSION['msg_tipo'])) {
                             <h6 class="my-0"><?= $curso['nome_curso']; ?></h6>
                             <small class="text-muted"><?= $_SESSION['evento_atual_nome'] ?></small>
                         </div>
-                    </li>        
+                    </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Parcelado</span>
                         <strong>R$ <?= $curso['valor']; ?></strong>
@@ -231,7 +231,7 @@ if (isset($_SESSION['msg_tipo'])) {
 
     <div class='row'><!-- Pagamento -->
         <div class="col-md-12"><!-- div form -->
-            <form class="needs-validation" id='cielo' action='../compra.cartao.php' method='POST' accept-charset='UTF-8'>        
+            <form class="needs-validation" id='cielo' action='../compra.cartao.php' method='POST' accept-charset='UTF-8'>
 
                 <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>" />
                 <input type="hidden" name="id_matricula" value="<?= $curso['id_matricula'] ?>">
@@ -239,9 +239,9 @@ if (isset($_SESSION['msg_tipo'])) {
                 <input type="hidden" name="aVista" value="<?= $curso['aVista'] ?>">
 
                 <hr class="mb-4">
-                
+
                 <h4 class="mb-3">Pagamento</h4>
-                                
+
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="cc-holder">Nome no Cartão</label>
@@ -258,7 +258,7 @@ if (isset($_SESSION['msg_tipo'])) {
                         <div class="invalid-feedback">
                         Este campo é obrigatório.
                         </div>
-                    </div>                                    
+                    </div>
                     <div class="col-md-4 mb-3">
                         <label for="exampleFormControlSelect1">Bandeira</label>
                         <select class="form-control" name='cc-brand' id="exampleFormControlSelect1">
@@ -303,12 +303,12 @@ if (isset($_SESSION['msg_tipo'])) {
                                     $ybase = intval(date('Y'));
                                     for ($i = $ybase ; $i <= $ybase+20; $i++) {
                                         echo "<option value='",$i,"'>",$i,"</option>";
-                                    } 
+                                    }
                                 ?>
                                 </select>
                             </div>
-                        </div>                     
-                        
+                        </div>
+
                         <div class="invalid-feedback">
                         Este campo é obrigatório.
                         </div>
@@ -319,22 +319,22 @@ if (isset($_SESSION['msg_tipo'])) {
                         <div class="invalid-feedback">
                         Este campo é obrigatório.
                         </div>
-                    </div>                    
+                    </div>
                     <div class="col-md-3 mb-3">
-                        <label for="cc-parcela">Parcela</label>                        
+                        <label for="cc-parcela">Parcela</label>
                         <select class="form-control" name='cc-parcela' id="exampleFormControlSelect1">
                             <option value="1">1 x R$ <?= number_format($curso['aVista'],2,",",".") ?></option>
                             <option value="2">2 x R$ <?= number_format($curso['valor']/2,2,",",".") ?></option>
                             <option value="3">3 x R$ <?= number_format($curso['valor']/3,2,",",".") ?></option>
                             <option value="4">4 x R$ <?= number_format($curso['valor']/4,2,",",".") ?></option>
-                            <option value="4">5 x R$ <?= number_format($curso['valor']/5,2,",",".") ?></option>
-                            <option value="4">6 x R$ <?= number_format($curso['valor']/6,2,",",".") ?></option>
-                        </select>                        
+                            <option value="5">5 x R$ <?= number_format($curso['valor']/5,2,",",".") ?></option>
+                            <option value="6">6 x R$ <?= number_format($curso['valor']/6,2,",",".") ?></option>
+                        </select>
                     </div>
                 </div>
                 <hr class="mb-4">
                 <div class="row">
-                    <div class="col-md-12 btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">                        
+                    <div class="col-md-12 btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
                         <div class="btn-group" role="group">
                             <a class="btn btn-outline-secondary btn-lg" href="../../aluno.home.php" role="button">Cancelar</a>
                         </div>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 // definir variáveis da página
 $pg_titulo = "Comprovante - Hosana SiS";
 $pg_nome = "pagamento.ver.comprovante.php";
@@ -22,7 +22,7 @@ include_once ('./inc/grupo.topo.php');
 <!-- #########     CONTEÚDO PRINCIPAL     ########## -->
 
 <?php
-$sql = "SELECT 
+$sql = "SELECT
 		pagamento.data_pg AS data_pg,
 		pagamento.data_add_pg AS data_add_pg,
 		pagamento.valor AS valor,
@@ -36,9 +36,9 @@ $sql = "SELECT
 		pagamento.id_matricula AS id_matricula,
 		matricula.id_evento AS id_evento,
 		matricula.status AS status_matricula,
-		cursos.nome_curso AS nome_curso, 
-		cursos.apelido AS apelido, 
-		alunos.nome AS nome, 
+		cursos.nome_curso AS nome_curso,
+		cursos.apelido AS apelido,
+		alunos.nome AS nome,
 		alunos.sobrenome AS sobrenome,
 		alunos.id_aluno AS id_aluno
 	FROM pagamento
@@ -55,45 +55,45 @@ $id_aluno = $dados['id_aluno'];
 $status = $dados["status"];
 ?>
 <div class="main">
-	
+
 	<div class="main-inner">
 
 	    <div class="container">
-	
+
 	      <div class="row">
-	      	
+
 	      	<div class="span8">
-            
+
             	<div class="widget ">
-                	
+
                     <div class="widget-header">
 	      				<i class='icon-barcode' ></i>
 	      				<h3>Copia do Comprovante/Recibo de <?= $dados['nome'] ?></h3>
 	  				</div> <!-- /widget-header -->
-					
+
 					<div class="widget-content">
-	      		
-<?php $imglink = "../".$dados['comprovante']; ?>
+
+<?php $imglink = 'https://aluno.seminariohosana.com.br/'.$dados['comprovante']; ?>
 
                     	<div class="control-group" style="text-align: center;">
                             <img style="max-width:730px;" src="<?= $imglink ?>"/><br/><?= $imglink ?>
                         </div>
-                   
+
                     </div><!-- /widget-content -->
 
-                
+
 				</div><!-- /widget -->
-			
+
             </div> <!-- /span6 -->
-	      		      	
-	      	<div class="span4">	
-	      		
+
+	      	<div class="span4">
+
                 <div class="widget widget-box">
-					
+
 					<div class="widget-header">
 	      				<h3><i  class='icon-info-sign' ></i> Informações sobre o pagamento</h3>
 	  				</div> <!-- /widget-header -->
-					
+
 					<div class="widget-content">
 
                     	<div class="control-group">
@@ -115,23 +115,23 @@ $status = $dados["status"];
                                 <?php if ($status<>3) { ?>
                                     <a href="./aluno.acao.php?atp=<?= base64_encode("pagamento_alterar_status") ?>&aux=3&idp=<?= base64_encode($id_pagamento) ?>&ida=<?= base64_encode($id_matricula) ?>" class="btn btn-success span2" title="Confirmar pagamento">Confirmar</a><br />
                                 <?php } ?>
-                                
-                                
+
+
                             </div>
-                            
+
                         </div>
 
                         <div><span class="badge"><?php echo $dados["id_pagamento"]; ?></span></div>
-                    
-					
+
+
 		    </div> <!-- /span6 -->
-	      	
+
 	      </div> <!-- /row -->
-	
+
 	    </div> <!-- /container -->
-	    
+
 	</div> <!-- /main-inner -->
-    
+
 </div> <!-- /main -->
 <!-- /########     /contúdo principal     ########## -->
 

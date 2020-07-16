@@ -85,7 +85,7 @@ $TEXT['pg2']= "Cartão de Débito";
 $TEXT['pg3']= "Espécie (em dinheiro)";
 $TEXT['pg4']= "Depósito no Banco";
 $TEXT['pg5']= "Cheque";
-$TEXT['pg6']= "Boleto";
+$TEXT['pg6']= "Cartão de crédito online";
 $TEXT['pg9']= "Outro";
 
 // Referente à
