@@ -95,17 +95,16 @@ if (isset($_SESSION['msg_tipo'])) {
 <!doctype html>
 <html lang="en">
 <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-        <meta name="generator" content="Jekyll v4.0.1">
-        <title>Hosana - Pagamento com cartão</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hosana - Pagamento com cartão</title>
 
-        <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/checkout/">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/checkout/">
 
     <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
     <style>
         .bd-placeholder-img {
@@ -147,7 +146,7 @@ if (isset($_SESSION['msg_tipo'])) {
     <link rel="icon" href="img/icon/favicon.ico">
     <meta name="theme-color" content="#563d7c">
 
-  </head>
+</head>
 <body class="bg-light">
  <div class="container">
 
@@ -339,7 +338,7 @@ if (isset($_SESSION['msg_tipo'])) {
                             <a class="btn btn-outline-secondary btn-lg" href="../../aluno.home.php" role="button">Cancelar</a>
                         </div>
                         <div class="btn-group" role="group">
-                            <button class="btn btn-primary btn-lg" type="submit">Finalizar o pagamento</button>
+                            <button class="btn btn-primary btn-lg" type="submit" id="btn-submit">Finalizar o pagamento</button>
                         </div>
                     </div>
                 </div>
@@ -353,5 +352,14 @@ if (isset($_SESSION['msg_tipo'])) {
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
     <script src="form-validation.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#cielo").submit(function (e) {
+                $("#btn-submit").attr("disabled", true);
+                return true;
+            });
+        });
+    </script>
 </body>
 </html>

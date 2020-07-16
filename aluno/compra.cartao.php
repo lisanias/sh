@@ -20,6 +20,7 @@ use Cielo\API30\Ecommerce\Request\CieloRequestException;
 // Captura os dados enviados pelo checkout
 // Verifica se tem dados postados
 $validar = validar($_POST);
+$validar = validarCvv($_POST['cc-cvv']);
 
 // TOKEN confere se tem token de certificação de origem, captura e reseta
 $token = token();

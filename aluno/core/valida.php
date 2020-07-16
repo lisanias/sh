@@ -30,6 +30,17 @@ function validar($post)
     return true;
 }
 
+function validarCvv($cvv)
+{
+    if(strlen(trim($cvv))!=3)
+    {
+        $_SESSION['msg'] = "O campo CVV não foi preenchido corretamente!";
+        header("Location: public/checkout.php");
+        die();
+    }
+    return true;
+}
+
 function token()
 {
     // captura a variavem token armazenada
