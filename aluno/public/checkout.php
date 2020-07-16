@@ -357,6 +357,7 @@ if (isset($_SESSION['msg_tipo'])) {
         $(document).ready(function () {
             $("#cielo").submit(function (e) {
                 $("#btn-submit").attr("disabled", true);
+                $("#btn-submit").html("Aguarde, comunicando...");
                 return true;
             });
         });
