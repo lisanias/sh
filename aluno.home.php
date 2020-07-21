@@ -103,17 +103,17 @@ include './aluno/config.ini.php';
                                 ON matricula.id_modulo = avisos_modulo.modulo_id
                             WHERE matricula.id_aluno = " . $_SESSION['id_aluno'] . " AND (avisos_modulo.data_ini is NULL or avisos_modulo.data_ini < CURRENT_TIMESTAMP)";
 
-                $consulta = mysqli_query($con,$sql);
-                $avisos = mysqli_fetch_array($consulta);
+                $avisosQuery = mysqli_query($con,$sql);
+                //$avisos = mysqli_fetch_array($avisosQuery);
 
-                $btn_link = $avisos['link_titulo']?$avisos['link_titulo']:'Click aqui';
-
-                if ($avisos) { 
+                foreach ($avisosQuery as $aviso) { 
                     
+                    $btn_link = $aviso['link_titulo']?$aviso['link_titulo']:'Click aqui';
+
                     echo "<div class='alert alert-success text-center'>";
-                    echo "<h1>{$avisos['titulo']}</h1>";
-                    echo "<p>{$avisos['conteudo']}</p>";
-                    echo "<a class='btn' href='{$avisos['link']}'>{$btn_link}</a>";
+                    echo "<h1>{$aviso['titulo']}</h1>";
+                    echo "<p>{$aviso['conteudo']}</p>";
+                    echo "<a class='btn' href='{$aviso['link']}'>{$btn_link}</a>";
                     echo "</div>";
                  } ?>
 
