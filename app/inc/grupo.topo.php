@@ -1,5 +1,5 @@
-<?php 
-// Agrupamento das intruções e includes da parte 
+<?php
+// Agrupamento das intruções e includes da parte
 // antecedente ao conteudo da página
 
 // incluir arquivo de com variáveis iniciais e contantes globais
@@ -21,7 +21,7 @@ echo "<body>";
 // menu do topo e inicio do codigo html
 include_once ('./inc/navbar.php');
 if (isset($_SESSION['logado'])) {
-	include ('./inc/mainmenu.php');
+	include_once ('./inc/mainmenu.php');
 }
 
 ?>
