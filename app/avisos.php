@@ -1,10 +1,10 @@
 <?php
-
 // definir variáveis da página
 $pg_titulo = "Telefone e e-mails";
 $pg_nome = "lista.email.telefone.php";
 $pg_menu = "sistema";
 
+// Incluir informações iniciais agrupadas
 include_once ('./inc/grupo.topo.php');
 
 
