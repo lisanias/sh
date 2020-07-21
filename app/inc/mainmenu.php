@@ -6,18 +6,18 @@
 <div class="subnavbar">
 
 	<div class="subnavbar-inner">
-	
+
 		<div class="container">
 
 			<ul class="mainnav">
-			
+
 				<li <?php echo ($pg_menu=="home")? "class='active'": ''; ?> >
 					<a href="home.php">
 						<i class="icon-home"></i>
 						<span>Home</span>
-					</a>	    				
+					</a>
 				</li>
-                
+
                 <li class="dropdown <?php echo ($pg_menu=="aluno")? "active": ''; ?>">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-user"></i>
@@ -45,7 +45,7 @@
                         <li><a href="./audio.pen.php" >Pendrive - Encomendas</a></li>
                     </ul>
                 </li>
-                
+
                 <li class="dropdown <?php echo ($pg_menu=="hospedagem")? "active": ''; ?>">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-glass"></i>
@@ -81,6 +81,7 @@
 
                     <ul class="dropdown-menu">
                         <li><a href="./lista.email.telefone.php"><i class="icon-tasks"></i> Listar todos os alunos</a></li>
+                        <li><a href="avisos.php"><i class="icon-exclamation-sign"></i> Avisos</a></li>
                         <li><a href="#"><i class="icon-question-sign"></i> Ajuda</a></li>
                         <li><a href="sistema.sobre.php"><i class="icon-info-sign"></i> Sobre</a></li>
                         <li><a href="sistema.inserir.evento.php"><i class="icon-calendar"></i> Adicionar Evento e módulos</a></li>
@@ -100,8 +101,8 @@
                     <ul class="dropdown-menu">
                         <li><a href="./print_lista_inscritos_pdf.php" target="_blank">Lista de Incritos</a></li>
                         <li><a href="./print_pdf.lista.hospedagem.php" target="_blank">Lista Alunos Hospedados</a></li>
-                        <li><a href="./print_pdf.lista.hospedagem.sexo-nome.php" target="_blank">Lisata Alunos Hospedados por Sexo</a></li>
-                        <li><a href="./print.lista.presenca.php" >Lisata de presença dos cursos</a></li>
+                        <li><a href="./print_pdf.lista.hospedagem.sexo-nome.php" target="_blank">Lista Alunos Hospedados por Sexo</a></li>
+                        <li><a href="./print.lista.presenca.php" >Lista de presença dos cursos</a></li>
                         <li class="divider"></li>
 						<li><a href="./print_pdf.pagamento.por.aluno.php" target="_blank">Pagamentos por Aluno</a></li>
 						<li><a href="./print_pdf.pagamentos.agrupado.por.aluno.php" target="_blank">Pagamentos detalhado por Aluno</a></li>
@@ -109,15 +110,15 @@
 						<li><a href="./print_pdf.pagamento.por.curso.php" target="_blank">Pagamentos por Curso</a></li>
                         <li class="divider"></li>
                         <li><a href="./print_pdf.etiquetas22.php" target="_blank">Etiquetas</a></li>
-                        
+
                     </ul>
                 </li><!-- / -->
 
-            
+
 			</ul>
 
 		</div> <!-- /container -->
-	
+
 	</div> <!-- /subnavbar-inner -->
 
 </div> <!-- /subnavbar -->

@@ -87,6 +87,36 @@ include './aluno/config.ini.php';
                     </div>
                 <?php } ?>
 
+                
+
+                <?php 
+                /*
+                 * Verificar se tem mensagem para ser exibida para aluno
+                 * 
+                 * */
+                
+                // echo '<pre>', var_dump($_SESSION, false), '</pre>';
+                //die();
+
+                $sql = "SELECT * FROM avisos_modulo 
+                            INNER JOIN matricula
+                                ON matricula.id_modulo = avisos_modulo.modulo_id
+                            WHERE matricula.id_aluno = " . $_SESSION['id_aluno'] . " AND (avisos_modulo.data_ini is NULL or avisos_modulo.data_ini < CURRENT_TIMESTAMP)";
+
+                $consulta = mysqli_query($con,$sql);
+                $avisos = mysqli_fetch_array($consulta);
+
+                $btn_link = $avisos['link_titulo']?$avisos['link_titulo']:'Click aqui';
+
+                if ($avisos) { 
+                    
+                    echo "<div class='alert alert-success text-center'>";
+                    echo "<h1>{$avisos['titulo']}</h1>";
+                    echo "<p>{$avisos['conteudo']}</p>";
+                    echo "<a class='btn' href='{$avisos['link']}'>{$btn_link}</a>";
+                    echo "</div>";
+                 } ?>
+
                 <div class="row-fluid" style="padding-top: 25px;">
                 	<div class="span4">
                     	<div class="control-group">

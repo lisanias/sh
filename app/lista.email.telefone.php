@@ -3,7 +3,7 @@
 // definir variáveis da página
 $pg_titulo = "Telefone e e-mails";
 $pg_nome = "lista.email.telefone.php";
-$pg_menu = "secretaria";
+$pg_menu = "sistema";
 
 include_once ('./inc/grupo.topo.php');
 
@@ -15,7 +15,7 @@ $rows = mysqli_num_rows($consulta);
 ?>
 
 <div class="container">
-                
+
     <div class="page-header">
         <h1>Lista de alunos <small>— email e telefones</small></h1>
     </div>
@@ -62,7 +62,7 @@ $rows = mysqli_num_rows($consulta);
                         }
                     } else {
                 echo "Nenhuma pendência!";
-                } 
+                }
                 ?>
             </tbody>
         </table>
@@ -73,4 +73,3 @@ $rows = mysqli_num_rows($consulta);
 $consulta->close();
 include ('./inc/botton.php');
 ?>
-
