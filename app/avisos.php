@@ -5,7 +5,7 @@ $pg_nome = "lista.email.telefone.php";
 $pg_menu = "sistema";
 
 // Incluir informações iniciais agrupadas
-include_once ('./inc/grupo.topo.php');
+include_once './inc/grupo.topo.php';
 
 
 // pegar os modulos deste eventos
