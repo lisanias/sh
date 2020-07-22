@@ -101,11 +101,10 @@ include './aluno/config.ini.php';
                 $sql = "SELECT * FROM avisos_modulo 
                             INNER JOIN matricula
                                 ON matricula.id_modulo = avisos_modulo.modulo_id
-                            WHERE matricula.id_aluno = " . $_SESSION['id_aluno'] . " AND (avisos_modulo.data_ini is NULL or avisos_modulo.data_ini < CURRENT_TIMESTAMP)";
+                            WHERE matricula.id_aluno = " . $_SESSION['id_aluno'] . " AND (avisos_modulo.data_ini is NULL or avisos_modulo.data_ini < CURRENT_TIMESTAMP) AND matricula.status >= '3'";
 
                 $avisosQuery = mysqli_query($con,$sql);
-                //$avisos = mysqli_fetch_array($avisosQuery);
-
+                
                 foreach ($avisosQuery as $aviso) { 
                     
                     $btn_link = $aviso['link_titulo']?$aviso['link_titulo']:'Click aqui';
@@ -113,7 +112,9 @@ include './aluno/config.ini.php';
                     echo "<div class='alert alert-success text-center'>";
                     echo "<h1>{$aviso['titulo']}</h1>";
                     echo "<p>{$aviso['conteudo']}</p>";
-                    echo "<a class='btn' href='{$aviso['link']}'>{$btn_link}</a>";
+                    if ($aviso['link']){
+                        echo "<a class='btn' href='{$aviso['link']}'>{$btn_link}</a>";
+                    }                    
                     echo "</div>";
                  } ?>
 
