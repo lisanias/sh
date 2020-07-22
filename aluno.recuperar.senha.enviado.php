@@ -13,6 +13,13 @@
         unset($_SESSION['msg']);
     }
 
+    // verficar se foi passado o nome do usuário
+    if (isset($_SESSION['nameSend'])) {
+        $nameSendSession = $_SESSION['nameSend'];
+        unset($_SESSION['nameSend']);
+    }
+    $nameSend = isset($nameSendSession) ? ' ' . $nameSendSession : "";
+
     // informar o tipo da mensagem de erro para formatação
     // Tipo: alert-success; alert-error; alert-info; " " (sem nada fica amarelo);
     if (isset($_SESSION['msg_tipo'])) {
@@ -66,22 +73,9 @@ include 'i_secao.evento.default.php';
 
         <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <?= LOGO ?>
-                    <div class="nav-collapse collapse">
-                        <?php include 'm_top.alunos.php'; ?>
-                    </div><!--/.nav-collapse -->
-                </div>
-            </div>
-        </div>
         <div class="container">
+
+            <?php include 'm_top.alunos.php'; ?>
 
             <?php if (isset($msg)) { ?>
             <div class="row">
@@ -92,26 +86,24 @@ include 'i_secao.evento.default.php';
                      </div>
                 </div>
             </div>
-            <?php } ?>
+            <?php } ?>            
 
-            <div class="row">
-
-        	 	<div class="row-fluid" style="background-image:url(img/h48.png); background-position: left center; background-repeat:no-repeat;">
-                        <h3 style="padding-left:55px">Email enviado</h3>
-                </div>
-                <div class="row-fluid">
-
-                    <div class="span12">
-                        <div class="hero-unit">
-                            <div class="well well-small">
-                            Um e-mail com instruções para recuperação da sua senha foi enviado. Verifique sua caixa postal e siga as intruções, se for preciso verifique a pasta de span também.<br> Qualquer dúvida entre em contato com a secretaria. 
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                
+            <div class="row" style="background-image:url(img/h48.png); background-position: left center; background-repeat:no-repeat;">
+                    <h3 style="padding-left:55px">Email enviado</h3>
             </div>
+            <div class="row">
+                
+                <div class="hero-unit" style="margin-top:25px;">
+                    <h3>Ola<? $nameSend ?>.</h3>
+                    <p>Enviamos um e-mail com instruções para recuperação da sua senha. 
+                    Verifique sua caixa postal e siga as intruções, 
+                    se for preciso verifique a pasta de span também. </p>
+                    <p>Qualquer dúvida entre em contato com a secretaria.</p>                    
+                </div>                
+
+            </div>
+                
+            
         
 
 

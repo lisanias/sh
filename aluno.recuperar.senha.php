@@ -57,18 +57,20 @@ include 'i_secao.evento.default.php';
 
     <body onload="vermsg('<?=$msg?>')">
         <div class="container">
+
             <?php include 'm_top.alunos.php'; ?>
 
             <?php if (isset($msg)) { ?>
 
-            <div class="row">
-                <div class="container">
-                    <div class="alert <?=$msg_tipo?> fade in" align="center" >
-                        <a class="close" data-dismiss="alert">×</a>
-                        <?=$msg?>
+                <div class="row">
+                    <div class="container">
+                        <div class="alert <?=$msg_tipo?> fade in" align="center" >
+                            <a class="close" data-dismiss="alert">×</a>
+                            <?=$msg?>
                         </div>
+                    </div>
                 </div>
-            </div>
+
             <?php } ?>
 
             <div class="row">

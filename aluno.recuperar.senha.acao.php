@@ -10,12 +10,6 @@ $email = $_POST['email'];
 
 $host = $_SERVER['HTTP_HOST'];
 
-$url['work'] = 'http://localhost/hosana'; // Definir para seu servidor local de trabalho
-# $url['www'] = 'http://187.18.113.233/hosana';
-$url['www'] = 'https://webig.pro.br/sh';
-$url['intra'] = 'http://172.16.1.2/hosana';
-
-
 ###########################################
 #   ALETERAR AQUI ANTES DE FAZER UPLOAD   #
 ###########################################
@@ -25,39 +19,21 @@ $url['intra'] = 'http://172.16.1.2/hosana';
 
 # Definir se estamos em um abiente online ou offline
 # Na chacara do seminário hosana estamos normalmente offline
-if($host=='webig.pro.br'){
+
     $status = 'on';
-} 
+    $url = "https://aluno.seminariohosana.com.br";
 
-//die($status. " -- ". $host);
-
-# ##########################################
-
-
-// Verificar em que dominio estamos
-switch($host){
-    case 'localhost':
-        $urlAtual = 'work';
-        break;
-    case 'webig.pro.br':
-        $urlAtual = 'www';
-        break;
-    default:
-        $urlAtual = 'intra'; //usado no Hosana - configurar
-        break;
-}
 
 // Verificar se o email existe
 $sql = "SELECT * 
         FROM alunos
         WHERE email = '{$email}'";
 
-$tabela = mysqli_query($con,$sql);
-$dados = mysqli_fetch_array($tabela);
+$alunos = mysqli_query($con,$sql);
+$dados = mysqli_fetch_array($alunos);
+$nome = $dados['nome'];
 
-
-
-if (!$linhas = mysqli_num_rows($tabela)) {
+if (!$linhas = mysqli_num_rows($alunos)) {
 
     $_SESSION["msg"]= "Este email não está cadastrado para nenhum dos nossos alunos";
     $_SESSION['msg_tipo']="alert-error";
@@ -80,35 +56,42 @@ else {
     // Preparar email
     $subject = 'Recuperar senha - HOSANA';
 
-    $message = "<html>
-        <head>
-            <title>Recuperação de Senha - Sistema Hosana</title>
-            <style>
-                div.dados { background-color: #EEE; margin: 1em 2em; padding: 1em 2em; border-radius: 12px; }
-                span.red {color: red; font-weight: bold;}
-            </style>
-        </head>
-        <body>
-            <h3>Recuperar senha</h3>
+    $emailContent = <<<EMAIL
+        <html>
+            <head>
+                <title>Recuperação de Senha - Sistema Hosana</title>
+                <style>
+                    div.dados { background-color: #EEE; margin: 1em 2em; padding: 1em 2em; border-radius: 12px; }
+                    span.red {color: red; font-weight: bold;}
+                </style>
+            </head>
+            <body>
+                <h3>Recuperar senha</h3>
+                <p>Ola <strong>{{nome}}!!</strong></p>
+                <p>Você soliciou a recuperação de sua senha. Click no link a seguir e digite uma nova senha.</p>
+                <p><a title='Criar nova senha' href='{{url}}/aluno.senha.reset.php?token={{hash}}&email={{email}}' >Refazer senha</a></p>
+                <p>Ou copie e cole o link a seguir no seu navegador: {{url}}/aluno.senha.reset.php?token={{hash}}&email={{email}}</p>
+                <p class='small'>Se você não solicitou a alteração de senha, apenas ignore este e-mail, que nada alterou em sua conta.</p>
+                <P>CONTATOS:<br>
+                Tel: (43) 3325-1424<br>
+                E-mail: secretaria@seminariohosana.com.br</p>
+                <p style='font-weight: bold;'>ATT.<br> Equipe do Hosana</p>
+                <p style='font-size:xsmall'>E-mail enviado automaticamente pelo sistema on-line do Hosana. Não responder e não usar este e-mail (hosana.sis@gmail.com) para qualquer tipo de comunicação com o S.H.</p>
+            </body>
+        </html>
+    EMAIL;
 
-            <p>Você soliciou a recuperação de sua senha. Click no link a seguir e digite uma nova senha.</p>
+    $emailContentData = [
+        "{{nome}}" => $nome,
+        "{{url}}" => $url,
+        "{{hash}}" => $hash,
+        "{{email}}" => $email,
+        "{{email}}" => $email
+    ];
 
-            <p><a title='Criar nova senha' href='{$url[$urlAtual]}/aluno.senha.reset.php?token={$hash}&email={$email}' >Refazer senha</a></p>
-
-            <p>Ou copie e cole o link a seguir no seu navegador: {$url[$urlAtual]}/aluno.senha.reset.php?token={$hash}&email={$email}</p>
-
-            <p class='small'>Se você não solicitou a alteração de senha, apenas ignore este e-mail, que nada alterou em sua conta.</p>
-            
-            
-            <P>CONTATOS:<br>
-            Tel: (43) 3325-1424<br>
-            E-mail: secretaria@seminariohosana.com.br</p>
-
-            <p style='font-weight: bold;'>ATT.<br> Equipe do Hosana</p>
-            
-            <p style='font-size:xsmall'>E-mail enviado automaticamente pelo sistema on-line do Hosana. Não responder e não usar este e-mail (hosana.sis@gmail.com) para qualquer tipo de comunicação com o S.H.</p>
-        </body>
-    </html>";
+    $messageData = str_replace(array_keys($emailContentData), array_values($emailContentData), $emailContent);
+    
+    $message = $messageData;
 
     if ($status == 'on') {
 
@@ -170,6 +153,7 @@ else {
             
             // Mensagem para o usuário
             $_SESSION["msg"] = "Não foi possivel enviar o e-mail de recuperação! <br /> (<i> {$mail->ErrorInfo} </i>)";
+            $_SESSION["nameSend"] = $nome;
             
             header("location: aluno.recuperar.senha.php");
             exit;
@@ -179,7 +163,8 @@ else {
 
     //Off-line
     else {
-        $urlCode = base64_encode($url[$urlAtual].'/aluno.senha.reset.php?token='.$hash.'&email='.$email);
+        $urlCode = base64_encode($url.'/aluno.senha.reset.php?token='.$hash.'&email='.$email);
+        $_SESSION['nameSend'] = $nome;
         header("location: aluno.recuperar.senha.off.php?url={$urlCode}");
         exit;
     }
