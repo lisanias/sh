@@ -73,10 +73,36 @@ $status = $dados["status"];
 
 					<div class="widget-content">
 
-<?php $imglink = 'https://aluno.seminariohosana.com.br/'.$dados['comprovante']; ?>
+						<div class="control-group" style="text-align: center;">
+							<?php 
 
-                    	<div class="control-group" style="text-align: center;">
-                            <img style="max-width:730px;" src="<?= $imglink ?>"/><br/><?= $imglink ?>
+								$imglink = 'https://aluno.seminariohosana.com.br/'.$dados['comprovante']; 
+								
+								switch ($dados["forma_pg"]){
+									case 1:
+										echo "<h2>Pagamento com cartão de crédito - na maquina</h2>";
+										break;
+									case 2:
+										echo "<h2>Pagamento com cartão de debito</h2>";
+										break;
+									case 3:
+										echo "<h2>Pagamento em espécie</h2>";
+										break;
+									case 4:
+										echo "<img style='max-width:730px;' src='{$imglink}'/><br/>({$imglink})";
+										break;
+									case 5:
+										echo "<h2>Pagamento com cheque</h2>";
+										break;
+									case 6:
+										echo "<h2 style='padding: 1em 0 2em 0;'>Pagamento online com cartão de crédito</h2>";
+										include "pagina/pagamento.cartao.inc.php";
+										break;
+									default:
+										echo "<h2>Outros pagamentos...</h2>";
+								}
+
+							?>
                         </div>
 
                     </div><!-- /widget-content -->
