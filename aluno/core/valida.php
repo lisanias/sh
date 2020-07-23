@@ -1,6 +1,6 @@
 <?php
 
-function validar($post)
+function validar($post, $linkRetorno = 'public/checkout.php')
 {
     // Variável para coleta dos dados de erro
     $erro = false;
@@ -18,13 +18,13 @@ function validar($post)
         
         // Verifica se existe algum dado nulo
         if ( empty ( $valor ) ) {
-        $erro = 'Existem campos em branco.';
+        $erro = 'Existem campos em branco. Por favor preencha novamente';
         }
     }
 
     if($erro){
         $_SESSION['msg'] = $erro;
-        header("Location: ../aluno.home.php");
+        header("Location: {$linkRetorno}");
     }
 
     return true;

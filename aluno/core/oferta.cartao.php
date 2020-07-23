@@ -1,10 +1,11 @@
 <?php
 
-require 'vendor/autoload.php';
-include_once dirname(__DIR__).'/i_secao.evento.default.php';
-include_once 'config.ini.php';
-include_once 'core/basedados.php';
-require 'core/valida.php';
+require '../vendor/autoload.php';
+include_once dirname(__DIR__).'../../i_secao.evento.default.php';
+include_once '../config.ini.php';
+include_once 'basedados.php';
+require 'valida.php';
+
 
 use Cielo\API30\Merchant;
 
@@ -15,11 +16,9 @@ use Cielo\API30\Ecommerce\Payment;
 use Cielo\API30\Ecommerce\CreditCard;
 
 use Cielo\API30\Ecommerce\Request\CieloRequestException;
-
-
 // Captura os dados enviados pelo checkout
 // Verifica se tem dados postados
-$validar = validar($_POST);
+$validar = validar($_POST, "../public/checkout.oferta.php");
 $validar = validarCvv($_POST['cc-cvv']);
 
 // TOKEN confere se tem token de certificação de origem, captura e reseta
@@ -27,23 +26,19 @@ $token = token();
 
 // CAPTURA DE DADOS 
 // Dados do formulário
-$cc_holder = $_POST['cc-holder'];   // Nome impresso no cartão
-$cc_card = $_POST['cc-card'];       // Número do cartão
-$cc_brand = $_POST['cc-brand'];     // Bandeira do cartão
+$customerName = $_POST["customerName"];  // Nome do Doador
+$valor = $_POST['cc-valor'];            // Valor doado
+$cc_holder = $_POST['cc-holder'];       // Nome impresso no cartão
+$cc_card = $_POST['cc-card'];           // Número do cartão
+$cc_brand = $_POST['cc-brand'];         // Bandeira do cartão
 $cc_expiration = $_POST['cc-mes'].'/'.$_POST['cc-ano'];      // Data de validade do cartão "12/2022"
 $cc_cvv = $_POST['cc-cvv'];          // código de segurança do cartão CVV
 $parcela = $_POST['cc-parcela'];    // Número de parcelas
-$parcelado = $_POST['valor'];
-$avista = $_POST['aVista'];
-$matricula = $_POST['id_matricula'];
-
-// dados da session
-$aluno = $_SESSION["nome"]. " " . $_SESSION["sobrenome"] ;;    // name completo do cliente (não do cartão de crédito)
+$matricula = "OFERTA-" . random_int(100, 999) . "-" . time();
 
 // Calcular valor a vista e parcelado e transformar em centavos.
-$valor = $parcela == 1 ? $avista : $parcelado;
+$valor = str_replace(',', '.', $valor);
 $valorCent = $valor * 100;
-
 
 // Configure o ambiente
 $environment = Environment::$ambiente();
@@ -55,7 +50,7 @@ $merchant = new Merchant($MerchantId, $MerchantKey);
 $sale = new Sale($matricula);
 
 // Crie uma instância de Customer informando o nome do cliente
-$customer = $sale->customer($aluno);
+$customer = $sale->customer($customerName);
 
 // Crie uma instância de Payment informando o valor do pagamento
 $payment = $sale->payment($valorCent, $parcela);
@@ -88,13 +83,11 @@ try {
     $status = $sale->getPayment()->getStatus();
     $returnMessage = $sale->getPayment()->getReturnMessage();
 
-   
-
     if ($status !== 1) {
         $_SESSION["msg"] = "Pagamento não realizado. (".$ambiente.") Mensagem da operadora do cartão: ". $returnMessage;
         $_SESSION['msg_tipo'] = "alert-warning";
         // Redireciona para home a página de pagamentos
-        header("Location: public/checkout.php");
+        header("Location: public/checkout.oferta.php");
         die();
     } 
 
@@ -109,7 +102,7 @@ try {
         $_SESSION["msg"] = "COBRANÇA NÃO FINALIZADA AINDA. Mensagem da operadora do cartão: ". $capturaMessage;
         $_SESSION['msg_tipo'] = "alert-warning";
         // Redireciona para home a página de pagamentos
-        header("Location: public/checkout.php");
+        header("Location: public/checkout.oferta.php");
         die();
     } 
 
@@ -129,9 +122,9 @@ try {
  */
 
 $ref_a = $parcela==1 ? '1' : '4'; // define a que se refere o pagamento (no caso se é cartão a vista ou cartão parcelado)
-$complemento = "Pg ID: " . $requisicao->getPayment()->getPaymentId() . " - Cod. Autorização: " . 'authorization_code'=>$captura->getAuthorizationCode() . " - NSU: " . captura->getProofOfSale();
+$complemento = "Pg ID: " . $requisicao->getPayment()->getPaymentId() . " - Cod. Autorização: " . $captura->getAuthorizationCode() . " - NSU: " . $captura->getProofOfSale();
 
-$sqlPagamento = ["id_matricula"=>$matricula,"valor"=>$valor, "parcela"=>$parcela, "status"=>'3', "ref_a"=>$ref_a, "complemento"=>$complemento ];
+$sqlPagamento = ["id_matricula"=>"0","valor"=>$valor, "parcela"=>$parcela, "status"=>'3', "ref_a"=>$ref_a, "complemento"=>$complemento ];
 $sql = db::sqlPagamentoAdd($sqlPagamento);
 $result = db::connect($sql);
 
@@ -155,13 +148,22 @@ $sql_pag_cartao = [
             "receivedDate"=>$requisicao->getPayment()->getReceivedDate(),
             "capturedDate"=>$captura->getCapturedDate(),
         ];
+
 $sql = db::sqlPagCartaoAdd($sql_pag_cartao);
 $pgCartaoResult = db::connect($sql);
 
-$sql = "UPDATE matricula SET status = 3 WHERE id_matricula = $matricula";
-$matriculaResult = db::connect($sql);
+/**
+ * 
+echo "<pre>";
+print_r([
+    "requisicao" => $requisicao,
+    "captura" => $captura
+]);
+echo "</pre>";
+
+die();
+ */
 
 // Redireciona para a página com a confirmação
-
 $_SESSION['pg_cartao'] = $pgCartaoResult;
-header("Location: public/pagamento.realizado.php");
+header("Location: ../public/pagamento.oferta.realizado.php");

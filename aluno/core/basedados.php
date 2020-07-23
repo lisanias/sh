@@ -19,7 +19,8 @@ class db {
             forma_pg,
             parcelas,
             status,
-            ref_a
+            ref_a,
+            complemento
             )
 
         VALUES ( 
@@ -30,11 +31,11 @@ class db {
             '6',
             '" . $dados['parcela'] ."',
             '" . $dados['status'] . "',
-            '" . $dados['ref_a'] . "'
+            '" . $dados['ref_a'] . "',
+            '" . $dados['complemento'] . "'
             )";
         return $sql;
     }
-
 
     function connect ($sql)
     {
@@ -44,10 +45,10 @@ class db {
         
         if(!$result = $con->query($sql)){
             //$_SESSION['msg'] = 'Ha um erro ao executar a pesquisa na base de dados [' . $con->error . ']';
-            echo 'Ha um erro ao executar a pesquisa na base de dados [' . $con->error . ']';
-            // Redireciona para home do aluno
-            header("Location: ../aluno.home.php");
-            die();
+            $_SESSION["msg"] = 'Ha um erro ao executar a pesquisa na base de dados [' . $con->error . ']';
+            // Redireciona para pagina anterior
+            //header('Location: ' . $_SERVER['HTTP_REFERER']);
+            //die();
         }
 
         $id = $con->insert_id;
@@ -67,7 +68,13 @@ class db {
             parcelas,
             customer,
             amount,
-            brand
+            brand,
+            merchantOrderId,
+            requisitionNSU,
+            captureNSU,
+            type,
+            receivedDate,
+            capturedDate
             )
 
         VALUES ( 
@@ -80,7 +87,13 @@ class db {
             '" . $dados['parcelas'] ."',
             '" . $dados['customer'] ."',
             '" . $dados['amount'] ."',
-            '" . $dados['brand'] . "'
+            '" . $dados['brand'] . "',
+            '" . $dados['merchantOrderId'] . "',
+            '" . $dados['requisitionNSU'] . "',
+            '" . $dados['captureNSU'] . "',
+            '" . $dados['type'] . "',
+            '" . $dados['receivedDate'] . "',
+            '" . $dados['capturedDate'] . "'
             )";
         return $sql;
     }
