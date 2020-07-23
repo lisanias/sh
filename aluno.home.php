@@ -349,9 +349,19 @@ if ($linhas = mysqli_num_rows($consulta)) {
                     </div>
 
                     <div class="span4"><!-- SESSÃO ENVIAR PAGAMENTOS - Ativo apenas para o próximo modulo (modulo ativo como padrão) -->
-                    	<div class="control-group">
+                    	 
+                         <div class="hero-unit">
+                            <div style="text-align:center;">
+                                <h3>Doar online</h3>
+                                <div style="text-align:center;">
+                                    <a href="aluno/public/checkout.oferta.php" class="btn btn-large btn-primary">Doar agora</a><br>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
                             <legend>
-                                <i class="icon24" style="background-image:url(img/icon_calc_&24.png);"></i> Pagamentos
+                                <i class="icon24" style="background-image:url(img/icon_calc_&24.png);"></i> Comprovantes de depósitos
                             </legend>
 							<?php if ($modulo_financas == "on") { ?>
                             	

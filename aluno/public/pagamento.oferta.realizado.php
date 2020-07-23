@@ -192,7 +192,7 @@ if (isset($_SESSION['msg_tipo'])) {
 
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <a class="btn btn-outline-success btn-lg" href="https://seminariohosana.com.br" role="button">Continuar</a>
+                        <a class="btn btn-outline-success btn-lg" href="javascript: history.go(-2)" role="button">Continuar</a>
                     </div>
                 </div>
 
