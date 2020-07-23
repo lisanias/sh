@@ -3,10 +3,11 @@
  *
  * Página de pagamento na cielo
  *
+ * ini_set("display_errors", 1);
+ * error_reporting(E_ALL) ;
  */
 
-ini_set("display_errors", 1);
-error_reporting(E_ALL) ;
+
 
 /*
  * Segurança - ver se está logado

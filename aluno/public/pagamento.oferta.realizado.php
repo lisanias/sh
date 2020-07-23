@@ -160,7 +160,7 @@ if (isset($_SESSION['msg_tipo'])) {
         </div>
 
         <div class="card">
-            <div class="card-header">Ofertado</div>
+            <div class="card-header">Valor</div>
             <div class="card-body">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">                            
@@ -179,7 +179,7 @@ if (isset($_SESSION['msg_tipo'])) {
         </div>
 
         <div class="card">
-            <div class="card-header">Aluno</div>            
+            <div class="card-header">Nome</div>            
             <div class='card-body'>
                 <address>
                     <strong><?= $pag_cartao['customer'] ?></strong><br>
