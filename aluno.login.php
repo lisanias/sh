@@ -82,7 +82,7 @@ include 'i_secao.evento.default.php';
                                 <div style="text-align:center;">
                                     <h3>Doar online</h3>
                                     <div style="text-align:center;">
-                                        <a href="https://aluno.seminariohosana.com.br/aluno/public/checkout.oferta.php" class="btn btn-large btn-primary">Doar agora</a><br>
+                                        <a href="aluno/public/checkout.oferta.php" class="btn btn-large btn-primary">Doar agora</a><br>
                                     </div>
                                 </div>
                             </div>
