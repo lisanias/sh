@@ -129,7 +129,7 @@ try {
  */
 
 $ref_a = $parcela==1 ? '1' : '4'; // define a que se refere o pagamento (no caso se é cartão a vista ou cartão parcelado)
-$complemento = "Pg ID: " . $requisicao->getPayment()->getPaymentId() . " - Cod. Autorização: " . 'authorization_code'=>$captura->getAuthorizationCode() . " - NSU: " . captura->getProofOfSale();
+$complemento = "Pg ID: " . $requisicao->getPayment()->getPaymentId() . " - Cod. Autorização: " . $captura->getAuthorizationCode() . " - NSU: " . $captura->getProofOfSale();
 
 $sqlPagamento = ["id_matricula"=>$matricula,"valor"=>$valor, "parcela"=>$parcela, "status"=>'3', "ref_a"=>$ref_a, "complemento"=>$complemento ];
 $sql = db::sqlPagamentoAdd($sqlPagamento);
