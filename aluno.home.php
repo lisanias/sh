@@ -7,6 +7,7 @@
  * Fazer incrição para cursos, para quem ja esta cadastrado.
  * 
  */
+
 error_reporting(E_ALL) ;
 
 include("aluno.seguranca.php"); // Inclui o arquivo com o sistema de segurança
@@ -101,7 +102,7 @@ include './aluno/config.ini.php';
                 $sql = "SELECT * FROM avisos_modulo 
                             INNER JOIN matricula
                                 ON matricula.id_modulo = avisos_modulo.modulo_id
-                            WHERE matricula.id_aluno = " . $_SESSION['id_aluno'] . " AND (avisos_modulo.data_ini is NULL or avisos_modulo.data_ini < CURRENT_TIMESTAMP) AND matricula.status >= '3'";
+                            WHERE matricula.id_aluno = " . $_SESSION['id_aluno'] . " AND (avisos_modulo.data_ini is NULL or avisos_modulo.data_ini < CURRENT_TIMESTAMP) AND matricula.status >= '4'";
 
                 $avisosQuery = mysqli_query($con,$sql);
                 
@@ -228,11 +229,12 @@ if ($dados) {
 	// mostrar calculo do valor final caso haja desconto
 	//if (
 	
-	echo "<p><i class=' icon-play-circle' ></i> Incrição/Matricula: {$_SESSION['evento_atual_nome']}</p>";
+    echo "<p><i class=' icon-play-circle' ></i> Incrição/Matricula: {$_SESSION['evento_atual_nome']}</p>";
+    echo "<div class='well well-large alert-info'>" . statusf($dados['status']) . "</div>";
 	echo "<div class='contorno-fundo'><table class='table'>";
 	echo 	"<tr><td class='tdd'>CURSO:</td><td>" . $dados['nome_curso'] . " (" . $dados['abreviatura'] . ")</td></tr>";
-	echo	"<tr><td class='tdd'>MÓDULO:</td><td>" . $dados['modulo'] . "</td></tr>";
-	echo	"<tr><td class='tdd'>HOSPEDAGEM:</td><td>" . ($dados['hospedagem']==1?'Sim':'Não') . "</td></tr>";
+    echo	"<tr><td class='tdd'>MÓDULO:</td><td>" . $dados['modulo'] . "</td></tr>";
+    echo	"<tr><td class='tdd'>HOSPEDAGEM:</td><td>" . ($dados['hospedagem']==1?'Sim':'Não') . "</td></tr>";
 	echo 	"<tr><td class='tdd'>VALOR:</td><td>";
 	echo 	"<tr><td class='tdd'>A prazo:</td><td>" . number_format($valor,2,",",".") . "</td></tr>";
 	echo 	"<tr><td class='tdd'>A vista:</td><td>" . number_format($aVista,2,",",".") . "</td></tr>";

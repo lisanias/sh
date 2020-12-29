@@ -1,4 +1,5 @@
 <?php
+
 // definir variáveis da página
 $pg_titulo = "Telefone e e-mails";
 $pg_nome = "avisos.php";
@@ -7,9 +8,8 @@ $pg_menu = "sistema";
 // Incluir informações iniciais agrupadas
 include_once 'inc/grupo.topo.php';
 
-
 // pegar os modulos deste eventos
-$sqlModulos = "SELECT * FROM modulo INNER JOIN cursos ON modulo.id_curso = cursos.id_curso WHERE id_evento = " . $_SESSION["evento_atual"];
+$sqlModulos = "SELECT * FROM modulo INNER JOIN cursos ON modulo.id_curso = cursos.id_curso WHERE id_evento = " . $_SESSION['evento_atual'];
 $consulta = mysqli_query($con, $sqlModulos);
 
 // pegar os avisos deste modulo
@@ -18,6 +18,7 @@ $sqlAvisos = "SELECT * FROM avisos_modulo
                   INNER JOIN cursos ON modulo.id_curso = cursos.id_curso
                   WHERE id_evento = " . $_SESSION["evento_atual"];
 $avisos = mysqli_query($con, $sqlAvisos);
+
 ?>
 
 <div class="container">

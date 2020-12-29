@@ -100,7 +100,7 @@ $status = $dados["status"];
                             <div class="control-group">
                                 <label class="control-label" for="descricao"><?= $TEXT['descricao'] ?></label>
                                 <div class="controls">
-                                     <input type="text" id="descricao" name="descricao" class="input-xlarge login" value="Pagamento durante o Hosana de <?= mesext(date('n')) ?> <?= date('Y') ?>" />
+                                     <input type="text" id="descricao" name="descricao" class="input-xlarge login" value="Incrição feita por <?= $_SESSION['nome_user'] ?> em <?= date('d/m/Y \à\s H:i:s') ?>" >
                                 </div> <!-- /controls -->
                             </div> <!-- /control-group -->
 
@@ -131,10 +131,10 @@ $status = $dados["status"];
                                 <label class="control-label" for="refa"><?= $TEXT['ref_a'] ?></label>
                                 <div class="controls">
                                     <select id="refa" name="refa" title="<?= $TEXT['ref_a_legenda'] ?>" >
-                                        <option value="1" ><?= $TEXT['ref1'] ?></option>
+                                        <option value="1" selected ><?= $TEXT['ref1'] ?></option>
                                         <option value="2" ><?= $TEXT['ref2'] ?></option>
                                         <option value="3" ><?= $TEXT['ref3'] ?></option>
-                    					<option value="4" selected ><?= $TEXT['ref4'] ?></option>
+                    					<option value="4" ><?= $TEXT['ref4'] ?></option>
                     					<option value="9" ><?= $TEXT['ref9'] ?></option>
                                     </select>
                                 </div> <!-- /controls -->

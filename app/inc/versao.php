@@ -7,6 +7,30 @@
 
 <body>
 
+<h3>01.2020-1229.1</h3>
+<ul>
+  <li>
+    Área do Aluno
+    <ul>
+      <li>Exibir aviso de link apenas para quem já pagou</li>
+      <li>Descrição de pagamento inserindo quem está atendendo no caso de fazer isncrição e pagamento na secretaria</li>
+      <li>Coração de alguns bugs</li>
+    </ul>
+  </li>
+  <li>
+    Admin
+    <ul>
+      <li>Inserir aviso de link para classrom ou qualquer outro aviso - Coreção de Bugs</li>
+      <li>Mostrar o Status da inscrição em detalhe</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>01.2020-0615</h3>
+<ul>
+  <li>Adicionado pagamento Cielo.</li>
+</ul>
+
 <h3>01.2018</h3>
 <ul>
   <li>Adicionado a função pendencias do aluno.</li>

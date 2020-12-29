@@ -11,22 +11,28 @@ function statusf ($nstatus) {
 			return "<span style='color:red;'>Cancelado</span>";
 			break;
 		case 1:
-			return "Lista de espera";
+			return "Lista de espera.";
 			break;
 		case 2:
-			return "<span style='color:#390;'>Esperando envio do comprovante</span>";
+			return "<span style='color:#390;'>Pré-iscrição - Aguardando pagamento<./span>";
 			break;
 		case 3:
-			return "Comprovante Enviado";
+			return "Inscrição em processamento - Estamos processando o seu pagamento.";
 			break;
 		case 4:
-			return "Incrição Confirmada";
+			return "Incrição e pagamento confirmados.";
 			break;
 		case 5:
-			return "Compareceu no evento";
+			return "Compareceu no evento.";
+			break;		
+		case 6:
+			return "Módulo não presencial.";
+			break;		
+		case 7:
+			return "Módulo concluído!";
 			break;
 		default:
-			return "Contate a secretaria do Hosana";
+			return "Contate a secretaria do Hosana.";
 	}
 }
 // Estado civil

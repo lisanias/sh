@@ -34,13 +34,14 @@ include 'i_secao.evento.default.php';
         <script src="js/jquery/jquery.mask.min.js" type="text/javascript"></script>
 
         <script>
-            function vermsg($msg)
-            {
-                    if ( $msg.length > 0 ) {
-                            $('#myModal').modal('show');
-                    }
-            }
-	</script>
+                function vermsg($msg)
+                {
+                        if ( $msg.length > 0 ) {
+                                $('#myModal').modal('show');
+                        }
+                }            
+	    </script>
+
     </head>
         <body onload="vermsg('<?=$msg?>')">
                 
@@ -78,7 +79,7 @@ include 'i_secao.evento.default.php';
                                     de <?= date('Y', strtotime($evento['data_fim']) ) ?></h3>
                                 </div>
                             </div>
-                            <div class="hero-unit">
+                            <div class="hero-unit" style="display: none;">
                                 <div style="text-align:center;">
                                     <h3>Doar online</h3>
                                     <div style="text-align:center;">

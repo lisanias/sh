@@ -25,7 +25,7 @@ $_SESSION['evento_id_local'] = $evento['id_local'];
 
 // pegar mensagem de alerta enviadas para a página
 # iniciar a variavel $msg
-//$msg='';
+$msg='';
 if (isset($_GET['msg'])) { // enquanto não está feita a transiçao para session
 	$msg = base64_decode($_GET['msg']);
 }

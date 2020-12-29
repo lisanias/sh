@@ -1,7 +1,7 @@
 <?php
 
 //timezone
-date_default_timezone_set('Europe/London');
+date_default_timezone_set('America/Fortaleza');
 
 //cria sessão
 session_start();
@@ -10,7 +10,7 @@ session_start();
 const SALT = 'qyW2rPk59iI1';
 
 // versão do aplicativo
-const VERSAO = 'SiS 1.2.0-07.2018';
+const VERSAO = 'SiS 1.2.0-07.2020';
 
 // Arquivo com o texto em PT-BR
 include_once('./lang/pt-br.php');
@@ -70,6 +70,7 @@ $sql = "SELECT * FROM config WHERE id_config = 1";
 $consulta = mysqli_query($con,$sql);
 $dados = mysqli_fetch_array($consulta);
 $id_evento_padrao = $dados['evento_padrao'];
+$_SESSION['evento_atual'] = $id_evento_padrao;
 
 if (!isset($_SESSION['evento'])) {
     

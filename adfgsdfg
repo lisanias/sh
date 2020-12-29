@@ -1,0 +1,323 @@
+[33mcommit 1fa3d2db1d65bf9cf10d403b1e2ecb7ac704cac7[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31mshpg/master[m[33m, [m[1;31mhostgator/master[m[33m, [m[1;31mgithub/master[m[33m)[m
+Author: Lisanias V. Loback <lisanias@hotmail.com>
+Date:   Thu Jul 23 18:04:47 2020 -0300
+
+    redirecio no index para a pagina de doação
+
+[1mdiff --git a/aluno/public/index.php b/aluno/public/index.php[m
+[1mindex 604f0fe..a7a572c 100644[m
+[1m--- a/aluno/public/index.php[m
+[1m+++ b/aluno/public/index.php[m
+[36m@@ -1,310 +1,4 @@[m
+ <?php[m
+[31m-/*[m
+[31m- *[m
+[31m- * Página de pagamento de oferta ao SH pela cielo *[m
+[31m- */[m
+ [m
+[31m-// ini_set("display_errors", 1);[m
+[31m-// error_reporting(E_ALL) ;[m
+[31m-[m
+[31m-/*[m
+[31m- * Segurança - não precisa estar logado para fazer uma oferta![m
+[31m- */[m
+[31m-[m
+[31m-include(dirname(__DIR__).'../../i_secao.evento.default.php');[m
+[31m-[m
+[31m-/*[m
+[31m- *  FIM Segurança[m
+[31m- */[m
+[31m-[m
+[31m-//Cria um token[m
+[31m-$_SESSION['token'] = md5(uniqid(rand(), true));[m
+[31m-[m
+[31m-include(dirname(__DIR__)."../../i_funcoes.php");[m
+[31m-[m
+[31m-// mensagens de erros[m
+[31m-// verficar se tem alguma mensagem de erro[m
+[31m-if (isset($_SESSION['msg'])) {[m
+[31m-    $msg = $_SESSION['msg'];[m
+[31m-    unset($_SESSION['msg']);[m
+[31m-}[m
+[31m-// informar o tipo da mensagem de erro para formatação[m
+[31m-// Tipo: alert-success; alert-danger; alert-info; alert-warning;[m
+[31m-if (isset($_SESSION['msg_tipo'])) {[m
+[31m-    $msg_tipo = $_SESSION['msg_tipo'];[m
+[31m-    unset($_SESSION['msg_tipo']);[m
+[31m-} else {[m
+[31m-	$msg_tipo = "alert-danger";[m
+[31m-}[m
+[31m-[m
+[31m-[m
+[31m-?>[m
+[31m-<!doctype html>[m
+[31m-<html lang="en">[m
+[31m-<head>[m
+[31m-    <meta charset="utf-8">[m
+[31m-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">[m
+[31m-    <title>Oferta | HOSANA</title>[m
+[31m-[m
+[31m-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/checkout/">[m
+[31m-[m
+[31m-    <!-- Bootstrap core CSS -->[m
+[31m-    <link href="css/bootstrap.min.css" rel="stylesheet">[m
+[31m-[m
+[31m-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>[m
+[31m-[m
+[31m-    <style>[m
+[31m-        .bd-placeholder-img {[m
+[31m-            font-size: 1.125rem;[m
+[31m-            text-anchor: middle;[m
+[31m-            -webkit-user-select: none;[m
+[31m-            -moz-user-select: none;[m
+[31m-            -ms-user-select: none;[m
+[31m-            user-select: none;[m
+[31m-        }[m
+[31m-[m
+[31m-        @media (min-width: 768px) {[m
+[31m-            .bd-placeholder-img-lg {[m
+[31m-                font-size: 3.5rem;[m
+[31m-        }[m
+[31m-        }[m
+[31m-[m
+[31m-        .container {[m
+[31m-            max-width: 960px;[m
+[31m-        }[m
+[31m-[m
+[31m-        .lh-condensed {[m
+[31m-            line-height: 1.25;[m
+[31m-        }[m
+[31m-    </style>[m
+[31m-[m
+[31m-[m
+[31m-    <!-- Favicons -->[m
+[31m-    <link rel="apple-touch-icon" href="img/icon/apple-icon-180x180.png" sizes="180x180">[m
+[31m-    <link rel="icon" type="image/png" sizes="192x192"  href="img/icon/android-icon-192x192.png">[m
+[31m-    <link rel="icon" type="image/png" href="img/icon/android-icon-192x192.png">[m
+[31m-    <link rel="icon" type="image/png" sizes="96x96" href="img/icon/favicon-96x96.png">[m
+[31m-    <link rel="icon" href="img/icon/favicon-32x32.png" sizes="32x32" type="image/png">[m
+[31m-    <link rel="icon" href="img/icon/favicon-16x16.png" sizes="16x16" type="image/png">[m
+[31m-    <link rel="manifest" href="img/icon/manifest.json">[m
+[31m-    <meta name="msapplication-TileColor" content="#563d7c">[m
+[31m-    <meta name="msapplication-TileImage" content="img/icon/ms-icon-144x144.png">[m
+[31m-    <link rel="mask-icon" href="img/logohosana_icon.svg" color="#563d7c">[m
+[31m-    <link rel="icon" href="img/icon/favicon.ico">[m
+[31m-    <meta name="theme-color" content="#563d7c">[m
+[31m-[m
+[31m-</head>[m
+[31m-<body class="bg-light">[m
+[31m- <div class="container">[m
+[31m-[m
+[31m-    <!-- Menu de Navegação - TOP Navbar -->[m
+[31m-    <nav class="navbar navbar-light bg-light">[m
+[31m-        <!-- Logo e Nome -->[m
+[31m-        <a class="navbar-brand" href="#">[m
+[31m-            <img src="img/logohosana_favicon.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">[m
+[31m-            HOSANA[m
+[31m-        </a>[m
+[31m-        <!-- Menu de info do lado direito -->[m
+[31m-        <div class="form-inline my-2 my-lg-0">[m
+[31m-            <p>[m
+[31m-                <span class="small">Usuário não logado<br /></span>[m
+[31m-                <?= $evento["descricao"] ?>[m
+[31m-            </p>[m
+[31m-        </div>[m
+[31m-    </nav>[m
+[31m-[m
+[31m-    <div class="py-5 text-center" style="padding: 15px; margin:5% 15%;">[m
+[31m-        <img class="d-block mx-auto mb-4" src="img/logohosana_icon.svg" alt="" width="72" height="72">[m
+[31m-        <h2>Oferta com cartão de crédito</h2>[m
+[31m-        <p class="lead">Insira seu nome e o valor da oferta voluntária juntamente com os dados do cartão e envie a sua oferta voluntária!</p>[m
+[31m-        <p>O valor ofertado pode ser divido em até 6 vezes!</p>[m
+[31m-    </div>[m
+[31m-[m
+[31m-    <!-- Mensagem de erro -->[m
+[31m-    <?php if (isset($msg)) { ?>[m
+[31m-        <div class="alert <?=$msg_tipo?>" align="center" role="alert">[m
+[31m-            <?=$msg?>[m
+[31m-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">[m
+[31m-                <span aria-hidden="true">&times;</span>[m
+[31m-            </button>[m
+[31m-        </div>[m
+[31m-    <?php } ?>[m
+[31m-[m
+[31m-    <div class="row"><!-- Itens -->[m
+[31m-        <div class="col-md-12 mb-4"><!-- Itens -->[m
+[31m-            <div class="mb-4">[m
+[31m-                <h4 class="d-flex justify-content-between align-items-center mb-3">[m
+[31m-                    <span class="text-muted">Descrição</span>[m
+[31m-                </h4>[m
+[31m-                <ul class="list-group mb-5">[m
+[31m-                    <li class="list-group-item d-flex justify-content-between lh-condensed">[m
+[31m-                        <div>[m
+[31m-                            <h6 class="my-0">Oferta para o Seminário Hosana</h6>[m
+[31m-                            <small class="text-muted">Oferta voluntária</small>[m
+[31m-                        </div>[m
+[31m-                    </li>                    [m
+[31m-                </ul>[m
+[31m-            </div>[m
+[31m-[m
+[31m-        </div><!-- Fim itens -->[m
+[31m-    </div><!-- FIM intens -->[m
+[31m-[m
+[31m-    <div class='row'><!-- Pagamento -->[m
+[31m-        <div class="col-md-12"><!-- div form -->[m
+[31m-            <form class="needs-validation" id='cielo' action='../core/oferta.cartao.php' method='POST' accept-charset='UTF-8'>[m
+[31m-[m
+[31m-                <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>" />[m
+[31m-[m
+[31m-                <h4 class="mb-3">Dados Pessoais</h4>[m
+[31m-[m
+[31m-                <div class="row mb-5">[m
+[31m-                    <div class="col-md-12 mb-3">[m
+[31m-                        <label for="customerName">Nome do doador</label>[m
+[31m-                        <input type="text" class="form-control" name="customerName" id="customerName" placeholder="" maxlength="255" required>[m
+[31m-                        <div class="invalid-feedback">[m
+[31m-                        Este campo é obrigatório.[m
+[31m-                        </div>[m
+[31m-                    </div>[m
+[31m-                </div><!-- /row -->[m
+[31m-[m
+[31m-                <h4 class="mb-3">Valor</h4>[m
+[31m-[m
+[31m-                <div class="row mb-5">[m
+[31m-                    <div class="col-md-6 mb-3">[m
+[31m-                        <div class="input-group-prepend">[m
+[31m-                            <div class="input-group-text">R$</div>[m
+[31m-                            <input type="text" class="form-control" name='cc-valor' id="cc-valor" required>[m
+[31m-                        </div>[m
+[31m-                        <div class="invalid-feedback">[m
+[31m-                        Este campo é obrigatório.[m
+[31m-                        </div>[m
+[31m-                    </div>[m
+[31m-                </div><!-- /row -->                    [m
+[31m-[m
+[31m-                <h4 class="mb-3">Dados do Cartão de Crédito</h4>[m
+[31m-[m
+[31m-                <div class="row">[m
+[31m-                    <div class="col-md-12 mb-3">[m
+[31m-                        <label for="cc-holder">Nome no Cartão</label>[m
+[31m-                        <input type="text" class="form-control" name="cc-holder" id="cc-holder" placeholder="" maxlength="25" required>[m
+[31m-                        <div class="invalid-feedback">[m
+[31m-                        Este campo é obrigatório.[m
+[31m-                        </div>[m
+[31m-                    </div>[m
+[31m-                </div><!-- /row -->[m
+[31m-[m
+[31m-                <div class="row">[m
+[31m-                    <div class="col-md-8 mb-3">[m
+[31m-                        <label for="cc-card">Número do cartão</label>[m
+[31m-                        <input type="text" class="form-control" name='cc-card' id="cc-card" placeholder="" required>[m
+[31m-                        <div class="invalid-feedback">[m
+[31m-                        Este campo é obrigatório.[m
+[31m-                        </div>[m
+[31m-                    </div>[m
+[31m-                    <div class="col-md-4 mb-3">[m
+[31m-                        <label for="exampleFormControlSelect1">Bandeira</label>[m
+[31m-                        <select class="form-control" name='cc-brand' id="exampleFormControlSelect1">[m
+[31m-                        <option>Visa</option>[m
+[31m-                        <option value="Master">Master Card</option>[m
+[31m-                        <option>Elo</option>[m
+[31m-                        <option value="Amex">American Express</option>[m
+[31m-                        <option value="Diners">Diners Club</option>[m
+[31m-                        <option>Discover</option>[m
+[31m-                        <option>Aura</option>[m
+[31m-                        <option>Hipercard</option>[m
+[31m-                        <option>Hiper</option>[m
+[31m-                        <option>JCB</option>[m
+[31m-                        </select>[m
+[31m-                    </div>[m
+[31m-                </div><!-- /row -->[m
+[31m-                <div class="row mb-5">[m
+[31m-                    <div class="col-md-6 mb-3">[m
+[31m-[m
+[31m-                        <div class="row">[m
+[31m-                            <div class="col-md-4">[m
+[31m-                                <label for="cc-mes">Mes</label>[m
+[31m-                                <select class="form-control" name='cc-mes' id="exampleFormControlSelect1">[m
+[31m-                                    <option value="01">01</option>[m
+[31m-                                    <option value="02">02</option>[m
+[31m-                                    <option value="03">03</option>[m
+[31m-                                    <option value="04">04</option>[m
+[31m-                                    <option value="05">05</option>[m
+[31m-                                    <option value="06">06</option>[m
+[31m-                                    <option value="07">07</option>[m
+[31m-                                    <option value="08">08</option>[m
+[31m-                                    <option value="09">09</option>[m
+[31m-                                    <option value="10">10</option>[m
+[31m-                                    <option value="11">11</option>[m
+[31m-                                    <option value="12">12</option>[m
+[31m-                                </select>[m
+[31m-                            </div>[m
+[31m-                            <div class="col-md-6">[m
+[31m-                                <label for="cc-ano">Ano</label>[m
+[31m-                                <select class="form-control" name='cc-ano' id="exampleFormControlSelect1">[m
+[31m-                                <?php[m
+[31m-                                    $ybase = intval(date('Y'));[m
+[31m-                                    for ($i = $ybase ; $i <= $ybase+20; $i++) {[m
+[31m-                                        echo "<option value='",$i,"'>",$i,"</option>";[m
+[31m-                                    }[m
+[31m-                                ?>[m
+[31m-                                </select>[m
+[31m-                            </div>[m
+[31m-                        </div>[m
+[31m-                        <div class="invalid-feedback">[m
+[31m-                        Este campo é obrigatório.[m
+[31m-                        </div>[m
+[31m-                    </div>[m
+[31m-                    <div class="col-md-3 mb-3">[m
+[31m-                        <label for="cc-cvv">CVV</label>[m
+[31m-                        <input type="text" class="form-control" name='cc-cvv' id="cc-cvv" placeholder=""  maxlength="3" required>[m
+[31m-                        <div class="invalid-feedback">[m
+[31m-                        Este campo é obrigatório.[m
+[31m-                        </div>[m
+[31m-                    </div>[m
+[31m-                    <div class="col-md-3">[m
+[31m-                        <label for="cc-parcela">Parcela</label>[m
+[31m-                        <select class="form-control" name='cc-parcela' id="cc-parcela">[m
+[31m-                            <option value="1" default>1</option>[m
+[31m-                            <option value="2">2</option>[m
+[31m-                            <option value="3">3</option>[m
+[31m-                            <option value="4">4</option>[m
+[31m-                            <option value="5">5</option>[m
+[31m-                            <option value="6">6</option>[m
+[31m-                        </select>[m
+[31m-                        <small id="cc-parcela" class="text-muted">[m
+[31m-                            O valor ofertado pode ser divido em até 6 vezes![m
+[31m-                        </small>[m
+[31m-                    </div>[m
+[31m-                </div>[m
+[31m-                <div class="row">[m
+[31m-                    <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups" style="width: 100%">[m
+[31m-                        <div class="btn-group col-xs-3 col-md-5 col-sm-12" role="group" style="margin: 10px 0;">[m
+[31m-                            <button class="btn btn-primary btn-lg" type="submit" id="btn-submit">Ofertar</button>[m
+[31m-                        </div>[m
+[31m-                        <div class="btn-group col-xs-3 col-md-5 col-sm-12" role="group" style="margin: 10px 0;">[m
+[31m-                            <a class="btn btn-outline-secondary btn-lg" href="javascript:history.back(1);" role="button">Voltar</a>[m
+[31m-                        </div>[m
+[31m-                    </div>[m
+[31m-                </div>[m
+[31m-            </form>[m
+[31m-        </div><!-- /div form -->[m
+[31m-    </div><!-- Row Pagamento -->[m
+[31m-[m
+[31m-<?php include('../core/rodape.php'); ?>[m
+[31m-[m
+[31m-</div><!-- FIM container -->[m
+[31m-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>[m
+[31m-    <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>[m
+[31m-    <script src="form-validation.js"></script>[m
+[31m-[m
+[31m-    <script type="text/javascript">[m
+[31m-        $(document).ready(function () {[m
+[31m-            $("#cielo").submit(function (e) {[m
+[31m-                $("#btn-submit").attr("disabled", true);[m
+[31m-                $("#btn-submit").html("Aguarde, comunicando...");[m
+[31m-                return true;[m
+[31m-            });[m
+[31m-        });[m
+[31m-    </script>[m
+[31m-</body>[m
+[31m-</html>[m
+[32m+[m[32mheader('Location: https://aluno.seminariohosana.com.br/aluno/public/checkout.oferta.php');[m
+[32m+[m[32mdie("erro ao redirecionar");[m
